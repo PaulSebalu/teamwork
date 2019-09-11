@@ -3,6 +3,7 @@ body {
   font-family: "Ubuntu", sans-serif;
   font-size: 15px;
   line-height: 1.5;
+  padding: 10px;
 }
 
 .container {
@@ -16,6 +17,7 @@ header {
   color: #ffffff;
   padding-top: 5px;
   min-height: 70px;
+  border-radius: 10px;
 }
 
 header #branding h1 {
