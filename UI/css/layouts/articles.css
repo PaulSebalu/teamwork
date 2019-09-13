@@ -92,6 +92,16 @@ p.published-by {
   font-weight: bold;
 }
 
+div h2 a {
+  color: #261210;
+  text-decoration: none;
+}
+
+div h2 a:hover {
+  color: #cccccc;
+  font-weight: bolder;
+}
+
 @media screen and (max-width: 600px) {
   section {
     width: 100%;
