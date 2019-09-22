@@ -1,0 +1,69 @@
+{
+  "name": "teamwork",
+  "version": "1.0.0",
+  "description": "Teamwork is an internal social network for organizations’ employees. The goal of this application is to facilitate more interaction between colleagues and facilitate team bonding.",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha --require @babel/polyfill --require @babel/register --timeout 10000 ./server/test/ --exit || exit 0",
+    "build": "babel app.js --out-dir build",
+    "dev-start": "babel-watch app.js",
+    "dev": "nodemon -r esm app.js babel-watch app.js",
+    "coverage": "nyc npm run test",
+    "coveralls":"nyc report --reporter=text-lcov | coveralls"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sebalu/teamwork.git"
+  },
+  "keywords": [],
+  "author": "Paul Sebalu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sebalu/teamwork/issues"
+  },
+  "homepage": "https://github.com/sebalu/teamwork#readme",
+  "devDependencies": {
+    "@babel/core": "^7.6.0",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/polyfill": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "@babel/register": "^7.6.0",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^24.9.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
+    "babel-watch": "^2.0.7",
+    "chai": "^4.1.2",
+    "chai-http": "^4.2.0",
+    "coveralls": "^3.0.6",
+    "eslint": "^6.4.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-node": "^4.0.0",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "istanbul": "^0.4.5",
+    "jest": "^24.9.0",
+    "mocha": "^5.2.0",
+    "mocha-lcov-reporter": "^1.3.0",
+    "nodemon": "^1.19.2",
+    "nyc": "^14.1.1",
+    "prettier": "^1.18.2",
+    "regenerator-runtime": "^0.13.3"
+  },
+  "dependencies": {
+    "@babel/plugin-transform-object-assign": "^7.2.0",
+    "@hapi/joi": "^16.1.2",
+    "babel-node": "0.0.1-security",
+    "bcrypt": "^3.0.6",
+    "body-parser": "^1.18.3",
+    "esm": "^3.2.25",
+    "express": "^4.17.1",
+    "joi": "^14.3.1",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.22.2",
+    "swagger-ui-express": "^4.1.1"
+  }
+}
