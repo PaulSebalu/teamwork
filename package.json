@@ -9,7 +9,7 @@
     "dev-start": "babel-watch app.js",
     "dev": "nodemon -r esm app.js babel-watch app.js",
     "coverage": "nyc npm run test",
-    "coveralls":"nyc report --reporter=text-lcov | coveralls"
+    "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
@@ -29,7 +29,7 @@
     "@babel/preset-env": "^7.6.0",
     "@babel/register": "^7.6.0",
     "babel-cli": "^6.26.0",
-    "babel-core": "^7.0.0-bridge.0",
+    "babel-core": "^6.6.0",
     "babel-jest": "^24.9.0",
     "babel-preset-env": "^1.7.0",
     "babel-register": "^6.26.0",
