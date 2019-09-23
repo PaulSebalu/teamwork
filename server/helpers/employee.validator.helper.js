@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-const signUpFields = employee => {
+const signUpValidator = employee => {
   const schema = {
     firstName: Joi.string()
       .regex(/^\S+$/)
@@ -57,4 +57,30 @@ const signUpFields = employee => {
   return Joi.validate(employee, schema, options);
 };
 
-export default signUpFields;
+const logInValidator = employee => {
+  const schema = {
+    email: Joi.string()
+      .regex(/^\S+$/)
+      .email()
+      .required(),
+    password: Joi.string()
+      .regex(/^\S+$/)
+      .min(3)
+      .max(255)
+      .required()
+  };
+  const options = {
+    language: {
+      key: '{{key}} ',
+      string: {
+        regex: {
+          base: 'must not have empty spaces'
+        }
+      }
+    }
+  };
+
+  return Joi.validate(employee, schema, options);
+};
+
+export { signUpValidator, logInValidator };
