@@ -14,7 +14,7 @@
 <br>
 <div align="center">
 <a href='https://travis-ci.com/sebalu/teamwork'><img src='https://travis-ci.com/sebalu/teamwork.svg?branch=develop' alt='Build Status' /></a>
-<a href='https://coveralls.io/github/sebalu/teamwork?branch=develop'><img src='https://coveralls.io/repos/github/sebalu/teamwork/badge.svg?branch=develop' alt='Coverage Status' /></a>
+<a href='https://coveralls.io/github/sebalu/teamwork?branch=ft-article-creation-api-endpoint-2397150'><img src='https://coveralls.io/repos/github/sebalu/teamwork/badge.svg?branch=ft-article-creation-api-endpoint-2397150' alt='Coverage Status' /></a>
   <a href="https://github.com/airbnb/javascript">
     <img src="https://img.shields.io/badge/code%20style-Airbnb-red" alt="Code style: Airbnb">
   </a>

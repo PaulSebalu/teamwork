@@ -2,7 +2,7 @@ import passwordHasher from '../helpers/password.hasher.helper';
 import employeeDb from './employees.db';
 
 class Employee {
-  async newEmployee(req) {
+  async createNewEmployee(validatedData) {
     const {
       firstName,
       lastName,
@@ -12,51 +12,37 @@ class Employee {
       jobRole,
       department,
       address
-    } = req;
-
-    const hashedPassword = await passwordHasher.hashPassword(password);
+    } = validatedData;
 
     const newEmployee = {
+      id: employeeDb.length + 1,
       firstName,
       lastName,
       email: email.toLowerCase(),
-      hashedPassword,
+      password: await passwordHasher.hashPassword(password),
       gender: gender.toUpperCase(),
       jobRole,
       department,
       address,
       admin: false
     };
-
-    const createNewEmployee = {
-      id: employeeDb.length + 1,
-      firstName: newEmployee.firstName,
-      lastName: newEmployee.lastName,
-      email: newEmployee.email,
-      password: newEmployee.hashedPassword,
-      gender: newEmployee.gender,
-      jobRole: newEmployee.jobRole,
-      department: newEmployee.department,
-      address: newEmployee.address,
-      admin: newEmployee.admin
-    };
-    employeeDb.push(createNewEmployee);
-    return createNewEmployee;
+    employeeDb.push(newEmployee);
+    return newEmployee;
   }
 
-  async allEmployees() {
+  allEmployees() {
     const employees = employeeDb;
     return employees;
   }
 
-  async findEmployee(id) {
-    const primarykey = parseInt(id, 10);
-    employeeDb.map(employee => {
-      if (employee.id === primarykey) {
-        return employee;
-      }
-      return Error(`An employee with the unique ID: ${id} does not exist`);
-    });
+  findEmployee(id) {
+    const employee = employeeDb.find(e => e.id === id);
+    return employee;
+  }
+
+  getEmployeebyEmail(email) {
+    const employee = employeeDb.find(e => e.email === email.toLowerCase());
+    return employee;
   }
 }
 

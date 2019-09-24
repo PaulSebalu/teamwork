@@ -1,7 +1,8 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 
-import employeeRouter from './server/routes/registration.route';
+import employeeRouter from './server/routes/employee.route';
+import articleRouter from './server/routes/article.route';
 
 const app = express();
 
@@ -10,6 +11,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(employeeRouter);
+app.use(articleRouter);
 
 app.get('/', (req, res) => {
   res.send({
