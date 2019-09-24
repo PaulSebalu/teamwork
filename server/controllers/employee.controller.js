@@ -1,10 +1,9 @@
 import employeeModel from '../models/employee.model';
-import employees from '../models/employees.db';
 import {
   signUpValidator,
   logInValidator
 } from '../helpers/employee.validator.helper';
-import createToken from '../helpers/create.token.helper';
+import Token from '../helpers/token.helper';
 import passwordHasher from '../helpers/password.hasher.helper';
 
 class Employee {
@@ -17,9 +16,7 @@ class Employee {
         error: error.details[0].message
       });
 
-    const employee = employees.find(
-      e => e.email === req.body.email.toLowerCase()
-    );
+    const employee = employeeModel.getEmployeebyEmail(req.body.email);
     if (employee !== undefined) {
       return res.status(409).json({
         status: 409,
@@ -27,9 +24,12 @@ class Employee {
       });
     }
 
-    const newEmployee = await employeeModel.newEmployee(req.body);
+    const newEmployee = await employeeModel.createNewEmployee(req.body);
 
-    const token = createToken(req.body.email);
+    const token = Token.createToken({
+      employeeId: newEmployee.id,
+      adminAccess: newEmployee.admin
+    });
 
     const returnResponse = {
       status: 201,
@@ -51,7 +51,7 @@ class Employee {
 
     const { email, password } = req.body;
 
-    const employee = employees.find(e => e.email === email.toLowerCase());
+    const employee = employeeModel.getEmployeebyEmail(email);
     if (employee === undefined) {
       return res.status(404).json({
         status: 404,
@@ -71,7 +71,10 @@ class Employee {
       });
     }
 
-    const token = createToken(employee.id);
+    const token = Token.createToken({
+      employeeId: employee.id,
+      adminAccess: employee.admin
+    });
 
     const returnResponse = {
       status: 200,

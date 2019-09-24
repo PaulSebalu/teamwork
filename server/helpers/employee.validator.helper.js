@@ -3,84 +3,53 @@ import Joi from 'joi';
 const signUpValidator = employee => {
   const schema = {
     firstName: Joi.string()
-      .regex(/^\S+$/)
       .min(3)
       .max(20)
       .required(),
     lastName: Joi.string()
-      .regex(/^\S+$/)
       .min(3)
       .max(20)
       .required(),
     email: Joi.string()
-      .regex(/^\S+$/)
       .email()
       .required(),
     password: Joi.string()
-      .regex(/^\S+$/)
-      .min(3)
-      .max(255)
+      .min(4)
+      .max(25)
       .required(),
     gender: Joi.string()
-      .regex(/^\S+$/)
       .min(1)
-      .max(1)
+      .max(10)
       .required(),
     jobRole: Joi.string()
-      .regex(/^\S+$/)
       .min(2)
       .max(15)
       .required(),
     department: Joi.string()
-      .regex(/^\S+$/)
       .min(2)
       .max(25)
       .required(),
     address: Joi.string()
-      .regex(/^\S+$/)
       .min(3)
-      .max(255)
+      .max(35)
       .required()
   };
 
-  const options = {
-    language: {
-      key: '{{key}} ',
-      string: {
-        regex: {
-          base: 'must not have empty spaces'
-        }
-      }
-    }
-  };
-
-  return Joi.validate(employee, schema, options);
+  return Joi.validate(employee, schema);
 };
 
 const logInValidator = employee => {
   const schema = {
     email: Joi.string()
-      .regex(/^\S+$/)
       .email()
       .required(),
     password: Joi.string()
-      .regex(/^\S+$/)
       .min(3)
       .max(255)
       .required()
   };
-  const options = {
-    language: {
-      key: '{{key}} ',
-      string: {
-        regex: {
-          base: 'must not have empty spaces'
-        }
-      }
-    }
-  };
 
-  return Joi.validate(employee, schema, options);
+  return Joi.validate(employee, schema);
 };
 
 export { signUpValidator, logInValidator };
