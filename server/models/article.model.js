@@ -22,6 +22,26 @@ class Article {
     const articles = articleDb;
     return articles;
   }
+
+  findArticle(id) {
+    const article = articleDb.find(e => e.id === id);
+    return article;
+  }
+
+  updateArticle(validatedData, articleId) {
+    const article = articleDb.find(e => e.id === articleId);
+    const updatedArticle = {
+      id: article.id,
+      title: validatedData.title || article.title,
+      article: validatedData.article || article.article,
+      publishedOn: article.publishedOn,
+      author: article.author,
+      inappropriateFlag: article.inappropriateFlag,
+      inappropriateFlagCount: article.inappropriateFlagCount
+    };
+    articleDb.splice(articleDb.indexOf(article), 1, updatedArticle);
+    return updatedArticle;
+  }
 }
 
 export default new Article();

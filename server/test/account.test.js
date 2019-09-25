@@ -26,7 +26,6 @@ describe('User registration endpoint', () => {
       .then(res => {
         expect(res).to.have.status(201);
         expect(res.body.message).to.be.equal('Successfully signed up');
-        expect(res.body.newEmployee.email).to.be.equal('paul@example.com');
         done();
       })
       .catch(err => {

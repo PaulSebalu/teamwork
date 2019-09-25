@@ -10,4 +10,10 @@ ArticleRouter.use(json());
 
 ArticleRouter.post('/api/v1/article/create', verifyUser, Article.CreateArticle);
 
+ArticleRouter.patch(
+  '/api/v1/article/update/:id',
+  verifyUser,
+  Article.updateArticle
+);
+
 export default ArticleRouter;
