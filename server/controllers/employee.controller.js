@@ -5,49 +5,39 @@ import {
 } from '../helpers/employee.validator.helper';
 import Token from '../helpers/token.helper';
 import passwordHasher from '../helpers/password.hasher.helper';
+import exceptionHandler from '../helpers/exception.helper';
 
 class Employee {
   static async EmployeeSignUp(req, res) {
     const { error } = signUpValidator(req.body);
-
-    if (error)
-      return res.status(422).json({
-        status: 422,
-        error: error.details[0].message
-      });
-
-    const employee = employeeModel.getEmployeebyEmail(req.body.email);
-    if (employee !== undefined) {
-      return res.status(409).json({
-        status: 409,
-        message: 'Email already taken!'
-      });
+    if (error) {
+      return exceptionHandler(res, error);
     }
 
+    if (employeeModel.getEmployeebyEmail(req.body.email) !== undefined) {
+      return res
+        .status(409)
+        .json({ status: 409, message: 'Email already taken!' });
+    }
     const newEmployee = await employeeModel.createNewEmployee(req.body);
 
     const token = Token.createToken({
       employeeId: newEmployee.id,
       adminAccess: newEmployee.admin
     });
-
-    const returnResponse = {
+    return res.status(201).json({
       status: 201,
       message: 'Successfully signed up',
-      token,
-      newEmployee
-    };
-    return res.status(201).json(returnResponse);
+      token
+    });
   }
 
   static async EmployeeSignIn(req, res) {
     const { error } = logInValidator(req.body);
 
-    if (error)
-      return res.status(422).json({
-        status: 422,
-        error: error.details[0].message
-      });
+    if (error) {
+      return exceptionHandler(res, error);
+    }
 
     const { email, password } = req.body;
 
@@ -75,20 +65,18 @@ class Employee {
       employeeId: employee.id,
       adminAccess: employee.admin
     });
-
-    const returnResponse = {
-      status: 200,
-      message: 'User is successfully logged in',
-      data: [
-        {
-          token
-        }
-      ]
-    };
     return res
       .header('Authorization', `Bearer ${token}`)
       .status(200)
-      .json(returnResponse);
+      .json({
+        status: 200,
+        message: 'User is successfully logged in',
+        data: [
+          {
+            token
+          }
+        ]
+      });
   }
 }
 
