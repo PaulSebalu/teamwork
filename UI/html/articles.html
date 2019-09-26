@@ -5,29 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Teamwork | Articles</title>
-    <link rel="stylesheet" href="./css/layouts/articles.css" />
+    <link rel="stylesheet" href="../css/layouts/articles.css" />
   </head>
   <body>
-    <header>
-      <div class="container">
-        <div id="branding">
-          <h1>Teamwork</h1>
-        </div>
-        <nav>
-          <ul>
-            <li><a href="create-article.html">Create article</a></li>
-            <li><a href="">My articles</a></li>
-            <li><a href="login.html">Sign out</a></li>
-          </ul>
-        </nav>
-      </div>
+    <header class="header">
+        <h1 class="logo"><a href="">Teamwork</a></h1>
+        <ul class="main-nav">
+          <li><a href="create-article.html">Create article</a></li>
+          <li><a href="">My articles</a></li>
+          <li><a href="../index.html">Sign out</a></li>
+      </ul>
     </header>
     <section class="row">
       <div class="column">
         <div class="card">
-          <h2><a href="article-detail.html">ARTICLE TITLE</a></h2>
+          <h2><a href="article-detail.html">Let's discuss code quality and why it's important.</a></h2>
           <h5>Published: Dec 7, 2017</h5>
-          <div class="article-image">Image</div>
+          <div class="article-image">
+              <img src="../img/code1.jpg" alt="placeholder">
+          </div>
           <p class="published-by">Published by: Paolo</p>
           <p>
             Sunt in culpa qui officia deserunt mollit anim id est laborum
@@ -37,9 +33,11 @@
           </p>
         </div>
         <div class="card">
-          <h2><a href="article-detail.html">ARTICLE TITLE</a></h2>
+          <h2><a href="article-detail.html">Here's why your git workflow should always tell a "chronological story".</a></h2>
           <h5>Published: Sep 2, 2017</h5>
-          <div class="article-image"><a>Image</a></div>
+          <div class="article-image">
+              <img src="../img/code2.jpg" alt="placeholder">
+          </div>
           <p class="published-by">Published by: Paolo</p>
           <p>
             Sunt in culpa qui officia deserunt mollit anim id est laborum
@@ -50,5 +48,8 @@
         </div>
       </div>
     </section>
+    <div class="footer">
+      <p>&trade;Teamwork</p>
+    </div>
   </body>
 </html>

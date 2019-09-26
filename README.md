@@ -26,7 +26,7 @@
 Teamwork is an internal social network for organizations’ employees. The goal of this application is to facilitate more interaction between colleagues and facilitate team bonding.
 
 ## Get started
-Teamwork requires Node.js 10.0+. Checkout the docs on installation guidelines.
+Teamwork requires Node.js 10.0+. Checkout the [docs](https://nodejs.org/en/) to see installation guidelines. The code has been built with simplicity, extensibility and code quality in mind.Should you find a script that's not in line with those qualities, kindly create an issue and I'll ensure to refactor where necessary.
 
 #### Installation guidelines
 - Clone the [repository](https://github.com/sebalu/teamwork.git) using ```git clone https://github.com/sebalu/teamwork.git```
