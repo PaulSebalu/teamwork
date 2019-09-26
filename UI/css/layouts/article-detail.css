@@ -2,32 +2,25 @@
   box-sizing: border-box;
 }
 
-section {
-  margin: auto;
-  width: 60%;
+body {
+  font-family: Arial;
+  padding: 10px;
+  background: #f3ebf6;
 }
 
-.container {
-  width: 98%;
-  margin: auto;
-  overflow: hidden;
-}
-
-header {
+.header {
   background-color: #261210;
   color: #ffffff;
   padding-top: 5px;
   min-height: 70px;
   border-radius: 10px;
+	border-radius: 10px;
 }
 
-header #branding h1 {
-  margin: 0px;
-  padding-top: 10px;
-}
-
-header #branding {
-  float: left;
+header ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 header a {
@@ -35,13 +28,35 @@ header a {
   text-decoration: none;
 }
 
-.card a {
-  text-decoration: none;
+.logo {
+	margin: 0;
+  font-size: 1.45em;
 }
 
-header ul {
-  margin: 0;
-  padding: 0;
+.main-nav {
+	margin-top: 5px;
+}
+
+.logo a,
+.main-nav a {
+	padding: 10px 15px;
+	text-transform: uppercase;
+	text-align: center;
+  display: block;
+}
+
+.main-nav a:hover {
+  color: #cccccc;
+}
+
+.main-nav a {
+	color: #ffffff;
+	font-size: 14px;
+}
+
+section {
+  margin: auto;
+  width: 60%;
 }
 
 .card ul {
@@ -49,26 +64,10 @@ header ul {
   padding: 0;
 }
 
-header li {
-  /* float: left; */
-  display: inline;
-  padding: 0 20px 0 20px;
-}
-
 .card li {
   /* float: left; */
   display: inline;
   padding: 0 5px 0 5px;
-}
-
-header nav {
-  float: right;
-  margin-top: 13px;
-}
-
-header a:hover {
-  color: #cccccc;
-  font-weight: bold;
 }
 
 .card button:hover {
@@ -103,11 +102,14 @@ body {
   width: 100%;
 }
 
+img {
+  max-height: 50%;
+  max-width: 100%;
+}
+
 .article-image {
-  background-color: #aaa;
+  height: 50%;
   width: 100%;
-  padding: 20px;
-  height: 200px;
 }
 
 .card {
@@ -177,3 +179,62 @@ form a {
   color: #e1bee7;
   text-decoration: none;
 }
+
+.footer {
+  position: static;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  font-weight: bold;
+  font-size: 20px;
+  color: linear-gradient(to right, #9c27b0, #e040fb);
+  text-align: center;
+  border-top-style: solid;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+
+@media (max-width: 600px) {
+  section {
+    width: 100%;
+  }
+  .header {
+    display: flex;
+  }
+  .header {
+    flex-direction: column;
+    align-items: center;
+  }
+ }
+ @media (min-width: 769px) {
+  .header,
+  .main-nav {
+    display: flex;
+  }
+  .header {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+  }
+ }
+ @media screen and (max-width: 900px) and (min-width: 600px) {
+   section {
+     width: 100%;
+   }
+   .header {
+    display: flex;
+  }
+  .header {
+    flex-direction: column;
+    align-items: center;
+  }
+ }
+ 
+ @media (min-width: 1025px) {
+  .header {
+    flex-direction: row;
+    justify-content: center;
+  }
+ 
+ }
