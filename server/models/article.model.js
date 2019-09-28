@@ -19,17 +19,16 @@ class Article {
   }
 
   allArticles() {
-    const articles = articleDb;
-    return articles;
+    return articleDb;
   }
 
   findArticle(id) {
-    const article = articleDb.find(e => e.id === id);
+    const article = articleDb.find(a => a.id === id);
     return article;
   }
 
   updateArticle(validatedData, articleId) {
-    const article = articleDb.find(e => e.id === articleId);
+    const article = articleDb.find(a => a.id === articleId);
     const updatedArticle = {
       id: article.id,
       title: validatedData.title || article.title,
@@ -41,6 +40,11 @@ class Article {
     };
     articleDb.splice(articleDb.indexOf(article), 1, updatedArticle);
     return updatedArticle;
+  }
+
+  deleteArticle(articleId) {
+    const article = articleDb.find(a => a.id === articleId);
+    articleDb.splice(articleDb.indexOf(article), 1);
   }
 }
 

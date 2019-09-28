@@ -1,6 +1,7 @@
 import articleModel from '../models/article.model';
 import createArticleValidator from '../helpers/article.validator.helper';
 import exceptionHandler from '../helpers/exception.helper';
+import articles from '../models/articles.db';
 
 class Article {
   static async CreateArticle(req, res) {
@@ -10,10 +11,7 @@ class Article {
       return exceptionHandler(res, error);
     }
 
-    const newArticle = articleModel.createNewArticle(
-      req.body,
-      req.user.employeeId
-    );
+    const newArticle = articleModel.createNewArticle(req.body, req.user.id);
 
     return res.status(201).json({
       status: 201,
@@ -26,7 +24,7 @@ class Article {
     });
   }
 
-  static async updateArticle(req, res) {
+  static updateArticle(req, res) {
     const article = articleModel.findArticle(parseInt(req.params.id, 10));
     if (article === undefined) {
       return res.status(404).json({
@@ -50,6 +48,21 @@ class Article {
         title: updatedArticle.title,
         article: updatedArticle.article
       }
+    });
+  }
+
+  static async deleteArticle(req, res) {
+    const article = articleModel.findArticle(parseInt(req.params.id, 10));
+    if (article === undefined) {
+      return res.status(404).json({
+        status: 404,
+        message: `An article with the unique id: ${req.params.id} does not exist`
+      });
+    }
+    articleModel.deleteArticle(parseInt(req.params.id, 10));
+    return res.status(204).json({
+      status: 204,
+      message: 'Article successfully deleted'
     });
   }
 }

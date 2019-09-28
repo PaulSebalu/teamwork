@@ -23,11 +23,11 @@ const signUpValidator = employee => {
       .required(),
     jobRole: Joi.string()
       .min(2)
-      .max(15)
+      .max(35)
       .required(),
     department: Joi.string()
       .min(2)
-      .max(25)
+      .max(35)
       .required(),
     address: Joi.string()
       .min(3)
