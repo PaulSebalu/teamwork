@@ -59,8 +59,8 @@ describe('Article creation endpoint', () => {
 describe('Article update endpoint', () => {
   it('Endpoint should return a 200 {Ok} HTTP status code and confirmation on article update', done => {
     const updatedArticle = {
-      title: 'Article Title',
-      article: 'Article body'
+      title: 'Updated Title',
+      article: 'Updated body'
     };
     chai
       .request(app)
@@ -70,8 +70,8 @@ describe('Article update endpoint', () => {
       .then(res => {
         expect(res).to.have.status(200);
         expect(res.body.message).to.be.equal('Article successfully edited');
-        expect(res.body.data.title).to.be.equal('Article Title');
-        expect(res.body.data.article).to.be.equal('Article body');
+        expect(res.body.data.title).to.be.equal('Updated Title');
+        expect(res.body.data.article).to.be.equal('Updated body');
         done();
       })
       .catch(err => {
@@ -92,6 +92,22 @@ describe('Article update endpoint', () => {
         expect(res.body.message).to.be.equal(
           'Forbidden: Provide a token to proceed'
         );
+        done();
+      })
+      .catch(err => {
+        return err.message;
+      });
+  });
+});
+
+describe('Article deletion endpoint', () => {
+  it('Endpoint should return a 204 {No Content} HTTP status code and confirmation of article deletion', done => {
+    chai
+      .request(app)
+      .delete('/api/v1/article/delete/2')
+      .set('Authorization', `Bearer ${employeeToken}`)
+      .then(res => {
+        expect(res).to.have.status(204);
         done();
       })
       .catch(err => {
