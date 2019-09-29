@@ -3,6 +3,7 @@ import lodash from 'lodash';
 import articleModel from '../models/article.model';
 import createArticleValidator from '../helpers/article.validator.helper';
 import exceptionHandler from '../helpers/exception.helper';
+import commentModel from '../models/comment.model';
 
 class Article {
   static async CreateArticle(req, res) {
@@ -87,6 +88,29 @@ class Article {
       message: 'Success',
       data: {
         articles
+      }
+    });
+  }
+
+  static getArticle(req, res) {
+    const article = articleModel.findArticle(parseInt(req.params.id, 10));
+    if (article === undefined) {
+      return res.status(404).json({
+        message: `An article with the unique id: ${req.params.id} does not exist`
+      });
+    }
+    const allComments = commentModel.allComments();
+
+    const comments = lodash.filter(allComments, ['article', article.id]);
+    return res.status(200).json({
+      status: 200,
+      data: {
+        id: article.id,
+        createdOn: article.publishedOn,
+        title: article.title,
+        article: article.article,
+        authorId: article.author,
+        comments
       }
     });
   }
