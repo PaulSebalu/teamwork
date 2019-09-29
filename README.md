@@ -14,6 +14,8 @@
   <span> | </span>
     <a href="https://teamwork-ac11.herokuapp.com/">API deployment on Heroku</a>
   <span> | </span>
+    <a href="https://www.pivotaltracker.com/n/projects/2397150">PT board</a>
+  <span> | </span>
 </div>
 <br>
 <div align="center">
