@@ -14,5 +14,9 @@ class Comment {
     commentDb.push(newComment);
     return newComment;
   }
+
+  allComments() {
+    return commentDb;
+  }
 }
 export default new Comment();

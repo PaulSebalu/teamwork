@@ -131,3 +131,19 @@ describe('Feeds api endpoint', () => {
       });
   });
 });
+
+describe('Single article api endpoint', () => {
+  it('Endpoint should return a 200 {Okay} HTTP status code', done => {
+    chai
+      .request(app)
+      .get('/api/v1/articles/1')
+      .set('Authorization', `Bearer ${employeeToken}`)
+      .then(res => {
+        expect(res).to.have.status(200);
+        done();
+      })
+      .catch(err => {
+        return err.message;
+      });
+  });
+});
