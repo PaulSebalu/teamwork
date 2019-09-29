@@ -9,7 +9,7 @@ const CommentRouter = express.Router();
 CommentRouter.use(json());
 
 CommentRouter.post(
-  '/api/v1/articles/:id/comments',
+  '/api/v1/article/:id/comments',
   verifyUser,
   Comment.createComment
 );

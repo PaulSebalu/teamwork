@@ -8,7 +8,11 @@
 <div align="center">
   Relevant links: <br>
   <span> | </span>
-  <a href="https://sebalu.github.io/teamwork/">UI</a>
+  <a href="https://sebalu.github.io/teamwork/">UI Components</a>
+  <span> | </span>
+  <a href="https://documenter.getpostman.com/view/5969437/SVtN3BDM">API documentation</a>
+  <span> | </span>
+    <a href="https://teamwork-ac11.herokuapp.com/">API deployment on Heroku</a>
   <span> | </span>
 </div>
 <br>
@@ -26,7 +30,7 @@
 Teamwork is an internal social network for organizations’ employees. The goal of this application is to facilitate more interaction between colleagues and facilitate team bonding.
 
 ## Get started
-Teamwork requires Node.js 10.0+. Checkout the [docs](https://nodejs.org/en/) to see installation guidelines. The code has been built with simplicity, extensibility and code quality in mind.Should you find a script that's not in line with those qualities, kindly create an issue and I'll ensure to refactor where necessary.
+Teamwork requires Node.js 10.0+. Checkout the [docs](https://nodejs.org/en/) to see installation guidelines. The code has been built with simplicity, reusability and code quality in mind.
 
 #### Installation guidelines
 - Clone the [repository](https://github.com/sebalu/teamwork.git) using ```git clone https://github.com/sebalu/teamwork.git```
@@ -44,5 +48,9 @@ The following endpoints have been implemented:
 | ------------- |:-------------:| -----| -------|
 | POST      | /api/v1/signup | Register an account | Content-Type: application/json
 | POST      | /api/v1/signin     | Sign in | Content-Type: application/json
-| POST | /api/v1/article/create      | Create a new article | Content-Type: application/json, Authorization: Bearer```space```token
-| PATCH      | /api/v1/article/update/id     | Modify a specific article | Content-Type: application/json, Authorization: Bearer```space```token
+| POST | /api/v1/article/create | Create a new article | Content-Type: application/json, Authorization: Bearer```space```token
+| PATCH      | /api/v1/article/update/:id     | Modify a specific article | Content-Type: application/json, Authorization: Bearer```space```token
+| DELETE      | /api/v1/article/delete/:id     | Delete a specific article | Content-Type: application/json, Authorization: Bearer```space```token
+| GET      | /api/v1/article/:id     | Get a specific article | Content-Type: application/json, Authorization: Bearer```space```token
+| GET      | /api/v1/feeds     | Get all articles | Content-Type: application/json, Authorization: Bearer```space```token
+| POST      | /api/v1/article/:id/comments     | Comment on a specific article | Content-Type: application/json, Authorization: Bearer```space```token
