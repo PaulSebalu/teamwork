@@ -136,7 +136,7 @@ describe('Single article api endpoint', () => {
   it('Endpoint should return a 200 {Okay} HTTP status code', done => {
     chai
       .request(app)
-      .get('/api/v1/articles/1')
+      .get('/api/v1/article/1')
       .set('Authorization', `Bearer ${employeeToken}`)
       .then(res => {
         expect(res).to.have.status(200);

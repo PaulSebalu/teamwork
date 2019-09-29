@@ -20,7 +20,7 @@ describe('Comment api endpoint', () => {
     };
     chai
       .request(app)
-      .post('/api/v1/articles/1/comments')
+      .post('/api/v1/article/1/comments')
       .set('Authorization', `Bearer ${employeeToken}`)
       .send(newComment)
       .then(res => {

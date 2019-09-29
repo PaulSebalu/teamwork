@@ -1,35 +1,40 @@
-'use strict';
+"use strict";
 
-var _express = require('express');
+var _express = _interopRequireDefault(require("express"));
 
-var _express2 = _interopRequireDefault(_express);
+var _bodyParser = _interopRequireDefault(require("body-parser"));
 
-var _bodyParser = require('body-parser');
+var _employee = _interopRequireDefault(require("./server/routes/employee.route"));
 
-var _bodyParser2 = _interopRequireDefault(_bodyParser);
+var _article = _interopRequireDefault(require("./server/routes/article.route"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _comment = _interopRequireDefault(require("./server/routes/comment.route"));
 
-// import employeeRouter from './server/routes/registration.route';
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var app = (0, _express2.default)();
-//add body parser as middleware for all requests
-app.use(_bodyParser2.default.json());
-
-app.use(_express2.default.urlencoded({ extended: false }));
-app.use(_express2.default.json());
-// app.use(employeeRouter);
-
-//define routes
+var app = (0, _express["default"])();
+app.use(_bodyParser["default"].json());
+app.use(_bodyParser["default"].urlencoded({
+  extended: true
+}));
+app.use(_employee["default"]);
+app.use(_article["default"]);
+app.use(_comment["default"]);
 app.get('/', function (req, res) {
   res.send({
+    status: 200,
     message: 'Teamwork API'
   });
 });
-
-//attach router as a middleware
-// app.use(routes);
-
+app.use('*', function (req, res) {
+  return res.status(405).json({
+    status: 405,
+    message: 'Method not allowed'
+  });
+});
+var PORT = process.env.PORT || 2000;
+app.listen(PORT, function () {
+  // eslint-disable-next-line no-console
+  console.log("Server started on port ".concat(PORT, "..."));
+});
 module.exports = app;
-
-// "test": "mocha --compilers js:babel-register",

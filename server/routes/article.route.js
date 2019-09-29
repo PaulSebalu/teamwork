@@ -27,6 +27,6 @@ ArticleRouter.delete(
 
 ArticleRouter.get('/api/v1/feeds', verifyUser, Article.allArticles);
 
-ArticleRouter.get('/api/v1/articles/:id', verifyUser, Article.getArticle);
+ArticleRouter.get('/api/v1/article/:id', verifyUser, Article.getArticle);
 
 export default ArticleRouter;
