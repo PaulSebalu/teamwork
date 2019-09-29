@@ -1,1 +1,1 @@
-web: babel-watch --exec babel-node app.js
+web: npm run start
