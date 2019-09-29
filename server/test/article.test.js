@@ -115,3 +115,19 @@ describe('Article deletion endpoint', () => {
       });
   });
 });
+
+describe('Feeds api endpoint', () => {
+  it('Endpoint should return a 200 {Okay} HTTP status code and a queryset composed of all articles', done => {
+    chai
+      .request(app)
+      .get('/api/v1/feeds')
+      .set('Authorization', `Bearer ${employeeToken}`)
+      .then(res => {
+        expect(res).to.have.status(200);
+        done();
+      })
+      .catch(err => {
+        return err.message;
+      });
+  });
+});

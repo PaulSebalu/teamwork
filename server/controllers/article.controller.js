@@ -1,7 +1,8 @@
+import moment from 'moment';
+import lodash from 'lodash';
 import articleModel from '../models/article.model';
 import createArticleValidator from '../helpers/article.validator.helper';
 import exceptionHandler from '../helpers/exception.helper';
-import articles from '../models/articles.db';
 
 class Article {
   static async CreateArticle(req, res) {
@@ -51,11 +52,10 @@ class Article {
     });
   }
 
-  static async deleteArticle(req, res) {
+  static deleteArticle(req, res) {
     const article = articleModel.findArticle(parseInt(req.params.id, 10));
     if (article === undefined) {
       return res.status(404).json({
-        status: 404,
         message: `An article with the unique id: ${req.params.id} does not exist`
       });
     }
@@ -63,6 +63,31 @@ class Article {
     return res.status(204).json({
       status: 204,
       message: 'Article successfully deleted'
+    });
+  }
+
+  static allArticles(req, res) {
+    const allArticles = articleModel.allArticles();
+    if (!allArticles) {
+      return res.status(200).json({
+        status: 200,
+        message: 'No articles available'
+      });
+    }
+    const articles = lodash.orderBy(
+      allArticles,
+      function iteratee(article) {
+        // eslint-disable-next-line new-cap
+        return new moment(article.publishedOn);
+      },
+      ['desc']
+    );
+    return res.status(200).json({
+      status: 200,
+      message: 'Success',
+      data: {
+        articles
+      }
     });
   }
 }

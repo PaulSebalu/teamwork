@@ -9,7 +9,7 @@ class Article {
       id: articleDb.length + 1,
       title,
       article,
-      publishedOn: moment().format('MMM-DD-Y::HH:mm'),
+      publishedOn: moment().format('MMM-DD-Y HH:mm'),
       author: authorId,
       inappropriateFlag: false,
       inappropriateFlagCount: 0
