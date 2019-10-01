@@ -1,6 +1,6 @@
 body {
   background-color: #f3ebf6;
-  font-family: "Ubuntu", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 15px;
   line-height: 1.5;
   padding: 10px;
@@ -35,7 +35,7 @@ header a {
 	padding: 10px 15px;
 	text-align: center;
   display: block;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Merienda', cursive;
 }
 
 .main {
@@ -49,8 +49,8 @@ header a {
   
   .sign {
     padding-top: 40px;
-    color: #8c55aa;
-    font-family: "Ubuntu", sans-serif;
+    color:  #261210;
+    font-family: 'Merienda', cursive;
     font-weight: bold;
     font-size: 23px;
   }
@@ -79,7 +79,7 @@ header a {
     margin-left: 46px;
     text-align: left;
     margin-bottom: 27px;
-    font-family: "Ubuntu", sans-serif;
+    font-family: 'Roboto', sans-serif;
   }
   
   .article-field {
@@ -101,7 +101,7 @@ header a {
     margin-left: 46px;
     text-align: left;
     margin-bottom: 27px;
-    font-family: "Ubuntu", sans-serif;
+    font-family: 'Roboto', sans-serif;
   }
   
   textarea {
@@ -119,7 +119,7 @@ header a {
     padding-right: 40px;
     padding-bottom: 10px;
     padding-top: 10px;
-    font-family: "Ubuntu", sans-serif;
+    font-family: 'Roboto', sans-serif;
     margin-left: 35%;
     font-size: 13px;
     box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);

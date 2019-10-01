@@ -3,7 +3,7 @@
 }
 
 body {
-  font-family: Arial;
+  font-family: 'Roboto', sans-serif;
   padding: 10px;
   background: #f3ebf6;
 }
@@ -80,12 +80,6 @@ img {
   border-radius: 10px;
 }
 
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
 p.published-by {
   font-style: italic;
   font-size: 12px;
@@ -114,6 +108,16 @@ div h2 a:hover {
   border-top-style: solid;
   margin-top: 10px;
   border-radius: 10px;
+}
+
+.article-title {
+  font-family: 'Merienda', cursive;
+  word-spacing: 5px;
+}
+
+.article-body {
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.8;
 }
 
 @media (max-width: 600px) {

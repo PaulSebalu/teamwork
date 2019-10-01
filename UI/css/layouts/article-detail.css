@@ -3,7 +3,7 @@
 }
 
 body {
-  font-family: Arial;
+  font-family: 'Roboto', sans-serif;
   padding: 10px;
   background: #f3ebf6;
 }
@@ -42,7 +42,7 @@ header a {
 	padding: 10px 15px;
 	text-align: center;
   display: block;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Merienda', cursive;
 }
 
 .main-nav a:hover {
@@ -65,7 +65,6 @@ section {
 }
 
 .card li {
-  /* float: left; */
   display: inline;
   padding: 0 5px 0 5px;
 }
@@ -85,7 +84,7 @@ section {
   padding-right: 5px;
   padding-bottom: 5px;
   padding-top: 5px;
-  font-family: "Ubuntu", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 13px;
   box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
   color: #ffffff;
@@ -119,12 +118,6 @@ img {
   border-radius: 10px;
 }
 
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
 p.published-by {
   font-style: italic;
   font-size: 12px;
@@ -147,7 +140,7 @@ p.published-by {
   margin-left: 46px;
   text-align: center;
   margin-bottom: 15px;
-  font-family: "Ubuntu", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 .comment-field:focus {
@@ -164,7 +157,7 @@ p.published-by {
   padding-right: 40px;
   padding-bottom: 10px;
   padding-top: 10px;
-  font-family: "Ubuntu", sans-serif;
+  font-family: 'Roboto', sans-serif;
   margin-left: 35%;
   font-size: 13px;
   box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
@@ -192,6 +185,17 @@ form a {
   border-top-style: solid;
   margin-top: 10px;
   border-radius: 10px;
+  font-family: 'Merienda', cursive;
+}
+
+.article-title {
+  font-family: 'Merienda', cursive;
+  word-spacing: 5px;
+}
+
+.article-body {
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.8;
 }
 
 @media (max-width: 600px) {
