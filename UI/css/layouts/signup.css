@@ -4,7 +4,7 @@ body {
   font-size: 15px;
   line-height: 1.5;
   padding: 10px;
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 
 .header {
@@ -79,7 +79,6 @@ header a {
 form.form1 {
   padding-top: 40px;
   padding-bottom: 8px;
-  /* overflow: auto; */
 }
 
 .field:focus {
