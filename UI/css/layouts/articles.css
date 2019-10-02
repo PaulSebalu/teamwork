@@ -162,5 +162,9 @@ div h2 a:hover {
    flex-direction: row;
    justify-content: center;
  }
+ .card {
+   width: 85%;
+   margin: 30px auto 30px auto;
 
+ }
 }

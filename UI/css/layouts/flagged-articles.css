@@ -1,0 +1,171 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Roboto', sans-serif;
+    padding: 10px;
+    background: #f3ebf6;
+  }
+  
+  .header {
+    background-color: #261210;
+    color: #ffffff;
+    padding-top: 5px;
+    min-height: 70px;
+    border-radius: 10px;
+      border-radius: 10px;
+  }
+  
+  header ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  header a {
+    color: #ffffff;
+    text-decoration: none;
+  }
+  
+  .logo {
+      margin: 0;
+    font-size: 1.45em;
+  }
+  
+  .main-nav {
+      margin-top: 5px;
+  }
+  
+  .logo a,
+  .main-nav a {
+      padding: 10px 15px;
+      text-align: center;
+    display: block;
+    font-family: 'Merienda', cursive;
+  }
+  
+  .main-nav a:hover {
+    color: #cccccc;
+  }
+  
+  .main-nav a {
+      color: #ffffff;
+      font-size: 14px;
+  }
+  
+  section {
+    margin: auto;
+    width: 60%;
+  }
+  
+  .column {
+    width: 100%;
+  }
+  
+  img {
+    max-height: 50%;
+    max-width: 100%;
+  }
+  
+  .article-image {
+    height: 50%;
+    width: 100%;
+  }
+  
+  .card {
+    background-color: white;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+  }
+  
+  p.published-by {
+    font-style: italic;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  
+  div h2 a {
+    color: #261210;
+    text-decoration: none;
+  }
+  
+  div h2 a:hover {
+    color: #cccccc;
+    font-weight: bold;
+  }
+  
+  .footer {
+    position: static;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    font-weight: bold;
+    font-size: 20px;
+    color: linear-gradient(to right, #9c27b0, #e040fb);
+    text-align: center;
+    border-top-style: solid;
+    margin-top: 10px;
+    border-radius: 10px;
+  }
+  
+  .article-title {
+    font-family: 'Merienda', cursive;
+    word-spacing: 5px;
+  }
+  
+  .article-body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.8;
+  }
+  
+  @media (max-width: 600px) {
+   section {
+     width: 100%;
+   }
+   .header {
+     display: flex;
+   }
+   .header {
+     flex-direction: column;
+     align-items: center;
+   }
+  }
+  @media (min-width: 769px) {
+   .header,
+   .main-nav {
+     display: flex;
+   }
+   .header {
+     flex-direction: column;
+     align-items: center;
+     width: 100%;
+     margin: 0 auto;
+   }
+  }
+  @media screen and (max-width: 900px) and (min-width: 600px) {
+    section {
+      width: 100%;
+    }
+    .header {
+     display: flex;
+   }
+   .header {
+     flex-direction: column;
+     align-items: center;
+   }
+  }
+  
+  @media (min-width: 1025px) {
+   .header {
+     flex-direction: row;
+     justify-content: center;
+   }
+   .card {
+     width: 85%;
+     margin: 30px auto 30px auto;
+  
+   }
+  }
+  
