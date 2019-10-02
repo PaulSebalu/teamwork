@@ -84,6 +84,26 @@ header a {
     margin-bottom: 27px;
     font-family: 'Roboto', sans-serif;
   }
+
+  .title-field {
+    width: 76%;
+    color: rgb(38, 50, 56);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    background: rgba(136, 126, 126, 0.04);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px solid rgba(0, 0, 0, 0.02);
+    margin-bottom: 50px;
+    margin-left: 46px;
+    text-align: left;
+    margin-bottom: 27px;
+    font-family: 'Roboto', sans-serif;
+  }
   
   textarea {
     width: 50%;
@@ -116,12 +136,59 @@ header a {
     text-decoration: none;
   }
   
+
   @media (max-width: 600px) {
     section {
       width: 100%;
     }
-
     .main {
         width: 100%;
     }
+   .header {
+     display: flex;
+   }
+   .header {
+     flex-direction: row;
+     align-items: left;
+   }
   }
+  
+  @media (min-width: 769px) {
+   .header {
+     display: flex;
+   }
+   .header {
+     flex-direction: row;
+     align-items: left;
+   }
+  }
+  @media screen and (max-width: 900px) and (min-width: 600px) {
+   .header {
+     display: flex;
+   }
+   .header {
+     flex-direction: row;
+     align-items: left;
+   }
+   section {
+    width: 100%;
+  }
+  .main {
+      width: 100%;
+  }
+  }
+  
+  @media (min-width: 1025px) {
+   .header {
+     flex-direction: row;
+     justify-content: left;
+   }
+   .footer {
+     margin-top: 30px;
+   }
+   .main {
+     margin-top: 25px;
+   }
+  
+  }
+  

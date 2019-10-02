@@ -42,7 +42,7 @@ header a {
 	padding: 10px 15px;
 	text-align: center;
   display: block;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Merienda', cursive;
 }
 
 .main-nav a:hover {
@@ -160,7 +160,11 @@ div h2 a:hover {
 @media (min-width: 1025px) {
  .header {
    flex-direction: row;
-   justify-content: center;
+   justify-content: left;
  }
+ .card {
+   width: 85%;
+   margin: 30px auto 30px auto;
 
+ }
 }
