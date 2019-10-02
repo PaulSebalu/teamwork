@@ -160,7 +160,7 @@
   @media (min-width: 1025px) {
    .header {
      flex-direction: row;
-     justify-content: center;
+     justify-content: left;
    }
    .card {
      width: 85%;
@@ -168,5 +168,3 @@
   
    }
   }
-
-  

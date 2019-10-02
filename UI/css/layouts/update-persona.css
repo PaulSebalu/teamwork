@@ -175,7 +175,7 @@ body {
   @media (min-width: 1025px) {
    .header {
      flex-direction: row;
-     justify-content: center;
+     justify-content: left;
    }
    .footer {
      margin-top: 30px;
@@ -184,6 +184,3 @@ body {
      margin-top: 25px;
    }
   }
-
-  
-  
