@@ -28,7 +28,8 @@ class Employee {
     return res.status(201).json({
       status: 201,
       message: 'Successfully signed up',
-      token
+      token,
+      data: newEmployee
     });
   }
 
@@ -71,11 +72,9 @@ class Employee {
       .json({
         status: 200,
         message: 'User is successfully logged in',
-        data: [
-          {
-            token
-          }
-        ]
+        data: {
+          token
+        }
       });
   }
 }

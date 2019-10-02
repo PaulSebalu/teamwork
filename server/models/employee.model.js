@@ -8,10 +8,6 @@ class Employee {
       lastName,
       email,
       password,
-      gender,
-      jobRole,
-      department,
-      address
     } = validatedData;
 
     const newEmployee = {
@@ -20,10 +16,6 @@ class Employee {
       lastName,
       email: email.toLowerCase(),
       password: await passwordHasher.hashPassword(password),
-      gender: gender.toUpperCase(),
-      jobRole,
-      department,
-      address,
       admin: false
     };
     employeeDb.push(newEmployee);
