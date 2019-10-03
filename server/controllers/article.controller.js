@@ -70,7 +70,7 @@ class Article {
     }
     articleModel.deleteArticle(parseInt(req.params.id, 10));
     return res.status(200).json({
-      status: 200,
+      status: 204,
       message: 'Article successfully deleted'
     });
   }

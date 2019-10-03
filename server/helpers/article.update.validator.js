@@ -5,8 +5,7 @@ const updateArticleValidator = article => {
     title: Joi.string()
       .min(3)
       .max(100),
-    article: Joi.string()
-      .min(3)
+    article: Joi.string().min(3)
   };
   return Joi.validate(article, schema);
 };

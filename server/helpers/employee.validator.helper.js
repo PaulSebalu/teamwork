@@ -15,7 +15,6 @@ const signUpValidator = employee => {
       .required(),
     password: Joi.string()
       .regex(/^((?=.*[a-z])(?=.*[A-Z]))(?=.*[0-9])(?=.{8,})/)
-      .min(4)
       .max(25)
       .required(),
     gender: Joi.string()
