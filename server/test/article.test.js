@@ -6,7 +6,7 @@ import Tokenizer from '../helpers/token.helper';
 
 const employeeToken = Tokenizer.createToken({
   employeeId: 2,
-  adminAccess: false
+  adminAccess: 'NOTADMIN'
 });
 
 const { expect } = chai;

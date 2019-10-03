@@ -4,6 +4,7 @@ import articleModel from '../models/article.model';
 import createArticleValidator from '../helpers/article.validator.helper';
 import exceptionHandler from '../helpers/exception.helper';
 import commentModel from '../models/comment.model';
+import updateArticleValidator from '../helpers/article.update.validator';
 
 class Article {
   static async CreateArticle(req, res) {
@@ -41,7 +42,7 @@ class Article {
         message: `An article with the unique id: ${req.params.id} does not exist`
       });
     }
-    const { error } = createArticleValidator(req.body);
+    const { error } = updateArticleValidator(req.body);
 
     if (error) {
       return exceptionHandler(res, error);
@@ -68,8 +69,8 @@ class Article {
       });
     }
     articleModel.deleteArticle(parseInt(req.params.id, 10));
-    return res.status(204).json({
-      status: 204,
+    return res.status(200).json({
+      status: 200,
       message: 'Article successfully deleted'
     });
   }

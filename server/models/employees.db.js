@@ -9,7 +9,7 @@ const employees = [
     jobRole: 'Admin',
     department: 'Tech',
     address: 'Kimironko',
-    admin: true
+    admin: 'ISADMIN'
   }
 ];
 

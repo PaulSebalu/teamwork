@@ -16,7 +16,7 @@ class Employee {
       lastName,
       email: email.toLowerCase(),
       password: await passwordHasher.hashPassword(password),
-      admin: false
+      admin: 'NOTADMIN'
     };
     employeeDb.push(newEmployee);
     return newEmployee;

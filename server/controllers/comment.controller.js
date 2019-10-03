@@ -11,8 +11,10 @@ class Comment {
       return exceptionHandler(res, error);
     }
     const article = articleModel.findArticle(parseInt(req.params.id, 10));
+    
+    const employeeId = req.user.id;
 
-    const newComment = commentModel.createNewComment(req.body, article.id);
+    const newComment = commentModel.createNewComment(req.body, article.id, employeeId);
 
     return res.status(201).json({
       status: 201,
@@ -21,7 +23,8 @@ class Comment {
         createdOn: newComment.createdOn,
         articleTitle: article.title,
         article: article.article,
-        comment: newComment.comment
+        comment: newComment.comment,
+        commentAuthor: newComment.author
       }
     });
   }
