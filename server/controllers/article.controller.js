@@ -4,6 +4,7 @@ import articleModel from '../models/article.model';
 import createArticleValidator from '../helpers/article.validator.helper';
 import exceptionHandler from '../helpers/exception.helper';
 import commentModel from '../models/comment.model';
+import updateArticleValidator from '../helpers/article.update.validator';
 
 class Article {
   static async CreateArticle(req, res) {
@@ -11,6 +12,13 @@ class Article {
 
     if (error) {
       return exceptionHandler(res, error);
+    }
+
+    if (req.user === undefined) {
+      return res.status(500).json({
+        status: 500,
+        message: `The server was not able to process the request due to an invalid token`
+      });
     }
 
     const newArticle = articleModel.createNewArticle(req.body, req.user.id);
@@ -34,7 +42,7 @@ class Article {
         message: `An article with the unique id: ${req.params.id} does not exist`
       });
     }
-    const { error } = createArticleValidator(req.body);
+    const { error } = updateArticleValidator(req.body);
 
     if (error) {
       return exceptionHandler(res, error);
@@ -61,7 +69,7 @@ class Article {
       });
     }
     articleModel.deleteArticle(parseInt(req.params.id, 10));
-    return res.status(204).json({
+    return res.status(200).json({
       status: 204,
       message: 'Article successfully deleted'
     });
@@ -86,9 +94,7 @@ class Article {
     return res.status(200).json({
       status: 200,
       message: 'Success',
-      data: {
-        articles
-      }
+      data: articles
     });
   }
 

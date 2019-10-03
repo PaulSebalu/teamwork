@@ -20,11 +20,11 @@ class Employee {
       lastName,
       email: email.toLowerCase(),
       password: await passwordHasher.hashPassword(password),
-      gender: gender.toUpperCase(),
-      jobRole,
-      department,
-      address,
-      admin: false
+      gender: gender.toUpperCase() || '',
+      jobRole: jobRole || '',
+      department: department || '',
+      address: address || '',
+      userType: 'user'
     };
     employeeDb.push(newEmployee);
     return newEmployee;

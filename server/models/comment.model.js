@@ -2,14 +2,15 @@ import moment from 'moment';
 import commentDb from './comment.db';
 
 class Comment {
-  createNewComment(validatedData, articleId) {
+  createNewComment(validatedData, articleId, employeeId) {
     const { comment } = validatedData;
 
     const newComment = {
       id: commentDb.length + 1,
       publishedOn: moment().format('MMM-DD-Y HH:mm'),
       article: articleId,
-      comment
+      comment,
+      author: employeeId
     };
     commentDb.push(newComment);
     return newComment;

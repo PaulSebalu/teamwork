@@ -23,12 +23,23 @@ class Employee {
 
     const token = Token.createToken({
       employeeId: newEmployee.id,
-      adminAccess: newEmployee.admin
+      adminAccess: newEmployee.userType
     });
     return res.status(201).json({
       status: 201,
       message: 'Successfully signed up',
-      token
+      data: {
+        token,
+        id: newEmployee.id || '',
+        firstName: newEmployee.firstName || '',
+        lastName: newEmployee.lastName || '',
+        email: newEmployee.email || '',
+        gender: newEmployee.gender || '',
+        jobRole: newEmployee.jobRole || '',
+        department: newEmployee.department || '',
+        address: newEmployee.address || '',
+        userType: newEmployee.userType || ''
+      }
     });
   }
 
@@ -63,7 +74,7 @@ class Employee {
 
     const token = Token.createToken({
       employeeId: employee.id,
-      adminAccess: employee.admin
+      adminAccess: employee.userType
     });
     return res
       .header('Authorization', `Bearer ${token}`)
@@ -71,11 +82,17 @@ class Employee {
       .json({
         status: 200,
         message: 'User is successfully logged in',
-        data: [
-          {
-            token
-          }
-        ]
+        data: {
+          token,
+          firstName: employee.firstName || '',
+          lastName: employee.lastName || '',
+          email: employee.email || '',
+          gender: employee.gender || '',
+          jobRole: employee.jobRole || '',
+          department: employee.department || '',
+          address: employee.address || '',
+          userType: employee.userType || ''
+        }
       });
   }
 }

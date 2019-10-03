@@ -3,36 +3,33 @@ import Joi from 'joi';
 const signUpValidator = employee => {
   const schema = {
     firstName: Joi.string()
-      .min(3)
+      .min(2)
       .max(20)
       .required(),
     lastName: Joi.string()
-      .min(3)
+      .min(2)
       .max(20)
       .required(),
     email: Joi.string()
       .email()
       .required(),
     password: Joi.string()
-      .min(4)
+      .regex(/^((?=.*[a-z])(?=.*[A-Z]))(?=.*[0-9])(?=.{8,})/)
       .max(25)
       .required(),
     gender: Joi.string()
+      .regex(/[Mm, Ff]{1}$/)
       .min(1)
-      .max(10)
-      .required(),
+      .max(1),
     jobRole: Joi.string()
       .min(2)
-      .max(35)
-      .required(),
+      .max(35),
     department: Joi.string()
       .min(2)
-      .max(35)
-      .required(),
+      .max(35),
     address: Joi.string()
       .min(3)
       .max(35)
-      .required()
   };
 
   return Joi.validate(employee, schema);
