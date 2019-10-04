@@ -38,7 +38,8 @@
   }
   
   .logo a,
-  .main-nav a {
+  .main-nav a,
+  .user {
       padding: 10px 15px;
       text-align: center;
     display: block;
@@ -49,7 +50,8 @@
     color: #cccccc;
   }
   
-  .main-nav a {
+  .main-nav a,
+  .user {
       color: #ffffff;
       font-size: 14px;
   }
@@ -160,7 +162,7 @@
   @media (min-width: 1025px) {
    .header {
      flex-direction: row;
-     justify-content: left;
+     justify-content: center;
    }
    .card {
      width: 85%;
