@@ -204,6 +204,10 @@ form a {
   line-height: 1.8;
 }
 
+.flag {
+  color: linear-gradient(to right, #9c27b0, #e040fb);
+}
+
 @media (max-width: 600px) {
   section {
     width: 100%;
