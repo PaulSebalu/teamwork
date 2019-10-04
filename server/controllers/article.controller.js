@@ -15,8 +15,8 @@ class Article {
     }
 
     if (req.user === undefined) {
-      return res.status(500).json({
-        status: 500,
+      return res.status(401).json({
+        status: 401,
         message: `The server was not able to process the request due to an invalid token`
       });
     }
@@ -91,10 +91,21 @@ class Article {
       },
       ['desc']
     );
+    const pageCount = Math.ceil(articles.length / 10);
+    let page = parseInt(req.query.p, 10);
+    if (!page) {
+      page = 1;
+    }
+    if (page > pageCount) {
+      page = pageCount;
+    }
     return res.status(200).json({
       status: 200,
       message: 'Success',
-      data: articles
+      count: articles.length,
+      page,
+      pageCount,
+      data: articles.slice(page * 10 - 10, page * 10)
     });
   }
 

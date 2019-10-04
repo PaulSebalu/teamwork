@@ -23,8 +23,19 @@ header ul {
   list-style: none;
 }
 
+div ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
 header a {
   color: #ffffff;
+  text-decoration: none;
+}
+
+.tags a {
+  color: #261210;
   text-decoration: none;
 }
 
@@ -38,30 +49,55 @@ header a {
 }
 
 .logo a,
-.main-nav a {
+.main-nav a,
+.user {
 	padding: 10px 15px;
 	text-align: center;
   display: block;
   font-family: 'Merienda', cursive;
 }
 
+.tags a {
+	text-align: left;
+  display: block;
+  font-family: 'Merienda', cursive;
+  font-size: 15px;
+}
+
+.tags a:hover {
+  color: #cccccc;
+}
+
 .main-nav a:hover {
   color: #cccccc;
 }
 
-.main-nav a {
+.main-nav a,
+.user {
 	color: #ffffff;
 	font-size: 14px;
 }
 
 section {
   margin: auto;
-  width: 60%;
+  width: 80%;
 }
 
-.column {
-  width: 100%;
+.left-column {   
+  float: left;
+  width: 70%;
 }
+
+.right-column {
+  float: left;
+  width: 30%;
+  padding-left: 10px;
+}
+
+.popular-tags {
+  font-family: 'Merienda', cursive;
+}
+
 
 img {
   max-height: 50%;
@@ -120,6 +156,39 @@ div h2 a:hover {
   line-height: 1.8;
 }
 
+.category-field {
+  width: 75%;
+  display: block;
+  color: rgb(38, 50, 56);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1px;
+  background: rgba(136, 126, 126, 0.04);
+  padding: 10px 15px;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  box-sizing: border-box;
+  border: 2px solid rgba(0, 0, 0, 0.02);
+  margin-bottom: 3px;
+  text-align: left;
+  font-family: 'Roboto', sans-serif;
+  margin-right: 50px;
+  margin-left: 50px;
+}
+
+input[type="text"], textarea {
+
+  background-color : #ffffff; 
+
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 @media (max-width: 600px) {
  section {
    width: 100%;
@@ -131,6 +200,10 @@ div h2 a:hover {
    flex-direction: column;
    align-items: center;
  }
+ .left-column, .right-column {   
+  width: 100%;
+  padding: 0;
+}
 }
 @media (min-width: 769px) {
  .header,
@@ -142,6 +215,9 @@ div h2 a:hover {
    align-items: center;
    width: 100%;
    margin: 0 auto;
+ }
+ .category-field {
+   margin-bottom: 15px;
  }
 }
 @media screen and (max-width: 900px) and (min-width: 600px) {
@@ -160,7 +236,7 @@ div h2 a:hover {
 @media (min-width: 1025px) {
  .header {
    flex-direction: row;
-   justify-content: left;
+   justify-content: center;
  }
  .card {
    width: 85%;
@@ -168,3 +244,4 @@ div h2 a:hover {
 
  }
 }
+

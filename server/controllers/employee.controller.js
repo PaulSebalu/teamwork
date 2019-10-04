@@ -6,12 +6,13 @@ import {
 import Token from '../helpers/token.helper';
 import passwordHasher from '../helpers/password.hasher.helper';
 import exceptionHandler from '../helpers/exception.helper';
+import passwordExceptionHandler from '../helpers/password.exception.helper';
 
 class Employee {
   static async EmployeeSignUp(req, res) {
     const { error } = signUpValidator(req.body);
     if (error) {
-      return exceptionHandler(res, error);
+      return passwordExceptionHandler(res);
     }
 
     if (employeeModel.getEmployeebyEmail(req.body.email) !== undefined) {

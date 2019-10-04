@@ -38,7 +38,8 @@ header a {
 }
 
 .logo a,
-.main-nav a {
+.main-nav a,
+.user {
 	padding: 10px 15px;
 	text-align: center;
   display: block;
@@ -49,7 +50,8 @@ header a {
   color: #cccccc;
 }
 
-.main-nav a {
+.main-nav a,
+.user {
 	color: #ffffff;
 	font-size: 14px;
 }
@@ -204,6 +206,10 @@ form a {
   line-height: 1.8;
 }
 
+.flag {
+  color: linear-gradient(to right, #9c27b0, #e040fb);
+}
+
 @media (max-width: 600px) {
   section {
     width: 100%;
@@ -244,7 +250,7 @@ form a {
  @media (min-width: 1025px) {
   .header {
     flex-direction: row;
-    justify-content: left;
+    justify-content: center;
   }
  
  }
