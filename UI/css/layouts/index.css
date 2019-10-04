@@ -1,11 +1,11 @@
 body {
   background-color: #f3ebf6;
-  font-family: "Ubuntu", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 15px;
   line-height: 1.5;
   padding: 10px;
+  overflow: hidden;
 }
-
 
 .header {
   background-color: #261210;
@@ -36,12 +36,11 @@ header a {
 	margin-top: 5px;
 }
 
-.logo a,
-.main-nav a {
+.logo a {
 	padding: 10px 15px;
-	text-transform: uppercase;
 	text-align: center;
   display: block;
+  font-family: 'Merienda', cursive;
 }
 
 .main-nav a:hover {
@@ -53,20 +52,19 @@ header a {
 	font-size: 14px;
 }
 
-
 .main {
   background-color: #ffffff;
   width: 400px;
   height: 400px;
-  margin: 7em auto;
+  margin: auto;
   border-radius: 1.5em;
   box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
 }
 
 .sign {
   padding-top: 40px;
-  color: #8c55aa;
-  font-family: "Ubuntu", sans-serif;
+  color: #261210;
+  font-family: 'Merienda', cursive;
   font-weight: bold;
   font-size: 23px;
 }
@@ -86,9 +84,9 @@ header a {
   border: 2px solid rgba(0, 0, 0, 0.02);
   margin-bottom: 50px;
   margin-left: 46px;
-  text-align: center;
+  text-align: left;
   margin-bottom: 27px;
-  font-family: "Ubuntu", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 form.form1 {
@@ -110,9 +108,9 @@ form.form1 {
   border: 2px solid rgba(0, 0, 0, 0.02);
   margin-bottom: 50px;
   margin-left: 46px;
-  text-align: center;
+  text-align: left;
   margin-bottom: 27px;
-  font-family: "Ubuntu", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 .username-field:focus,
@@ -130,7 +128,7 @@ form.form1 {
   padding-right: 40px;
   padding-bottom: 10px;
   padding-top: 10px;
-  font-family: "Ubuntu", sans-serif;
+  font-family: 'Roboto', sans-serif;
   margin-left: 35%;
   font-size: 13px;
   box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
@@ -172,6 +170,11 @@ a {
    color: #261210;
 }
 
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
 @media (max-width: 600px) {
   section {
     width: 100%;
@@ -180,33 +183,57 @@ a {
 		display: flex;
 	}
 	.header {
-		flex-direction: column;
-		align-items: center;
-	}
+		flex-direction: row;
+		align-items: left;
+  }
+  .main {
+    margin-top: 70px;
+  }
+  .footer {
+    margin-top: 70px;
+  }
 }
 @media (min-width: 769px) {
 	.header {
 		display: flex;
 	}
 	.header {
-		flex-direction: column;
-		align-items: center;
-	}
+		flex-direction: row;
+		align-items: left;
+  }
+  .main {
+    margin-top: 70px;
+  }
+  .footer {
+    margin-top: 70px;
+  }
 }
 @media screen and (max-width: 900px) and (min-width: 600px) {
   .header {
 		display: flex;
 	}
 	.header {
-		flex-direction: column;
-		align-items: center;
-	}
+		flex-direction: row;
+		align-items: left;
+  }
+  .main {
+    margin-top: 70px;
+  }
+  .footer {
+    margin-top: 70px;
+  }
 }
 
 @media (min-width: 1025px) {
 	.header {
 		flex-direction: row;
 		justify-content: center;
-	}
+  }
+  .footer{
+    margin-top: 75px;
+  }
+  .main {
+    margin-top: 75px;
+  }
 
 }
