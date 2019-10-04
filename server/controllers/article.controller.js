@@ -102,6 +102,7 @@ class Article {
     return res.status(200).json({
       status: 200,
       message: 'Success',
+      count: articles.length,
       page,
       pageCount,
       data: articles.slice(page * 10 - 10, page * 10)
