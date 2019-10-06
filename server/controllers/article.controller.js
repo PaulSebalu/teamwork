@@ -14,13 +14,6 @@ class Article {
       return exceptionHandler(res, error);
     }
 
-    if (req.user === undefined) {
-      return res.status(401).json({
-        status: 401,
-        message: `The server was not able to process the request due to an invalid token`
-      });
-    }
-
     const newArticle = articleModel.createNewArticle(req.body, req.user.id);
 
     return res.status(201).json({
@@ -29,7 +22,8 @@ class Article {
       data: {
         createdOn: newArticle.publishedOn,
         title: newArticle.title,
-        articleId: newArticle.id
+        articleId: newArticle.id,
+        category: newArticle.category
       }
     });
   }
@@ -56,7 +50,8 @@ class Article {
       message: 'Article successfully edited',
       data: {
         title: updatedArticle.title,
-        article: updatedArticle.article
+        article: updatedArticle.article,
+        category: updatedArticle.category
       }
     });
   }
@@ -83,16 +78,18 @@ class Article {
         message: 'No articles available'
       });
     }
+
     const articles = lodash.orderBy(
       allArticles,
       function iteratee(article) {
+        const dateTime = new Date(article.publishedOn);
         // eslint-disable-next-line new-cap
-        return new moment(article.publishedOn);
+        return moment(dateTime).format('MMM-DD-Y HH:mm');
       },
       ['desc']
     );
     const pageCount = Math.ceil(articles.length / 10);
-    let page = parseInt(req.query.p, 10);
+    let page = parseInt(req.query.page, 10);
     if (!page) {
       page = 1;
     }
@@ -119,6 +116,7 @@ class Article {
     const allComments = commentModel.allComments();
 
     const comments = lodash.filter(allComments, ['article', article.id]);
+
     return res.status(200).json({
       status: 200,
       data: {
@@ -128,6 +126,21 @@ class Article {
         article: article.article,
         authorId: article.author,
         comments
+      }
+    });
+  }
+
+  static findArticlesByCategory(req, res) {
+    const { category } = req.query;
+    const allArticles = articleModel.allArticles();
+    const matchedArticles = allArticles.filter(
+      article => article.category === category
+    );
+    return res.status(200).json({
+      status: 200,
+      message: 'Success',
+      data: {
+        matchedArticles
       }
     });
   }

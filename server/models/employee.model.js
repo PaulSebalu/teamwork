@@ -20,7 +20,7 @@ class Employee {
       lastName,
       email: email.toLowerCase(),
       password: await passwordHasher.hashPassword(password),
-      gender: gender.toUpperCase() || '',
+      gender: (gender && gender.toUpperCase()) || '',
       jobRole: jobRole || '',
       department: department || '',
       address: address || '',

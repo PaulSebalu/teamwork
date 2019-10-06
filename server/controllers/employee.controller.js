@@ -31,15 +31,15 @@ class Employee {
       message: 'Successfully signed up',
       data: {
         token,
-        id: newEmployee.id || '',
-        firstName: newEmployee.firstName || '',
-        lastName: newEmployee.lastName || '',
-        email: newEmployee.email || '',
-        gender: newEmployee.gender || '',
-        jobRole: newEmployee.jobRole || '',
-        department: newEmployee.department || '',
-        address: newEmployee.address || '',
-        userType: newEmployee.userType || ''
+        id: newEmployee.id,
+        firstName: newEmployee.firstName,
+        lastName: newEmployee.lastName,
+        email: newEmployee.email,
+        gender: newEmployee.gender,
+        jobRole: newEmployee.jobRole,
+        department: newEmployee.department,
+        address: newEmployee.address,
+        userType: newEmployee.userType
       }
     });
   }

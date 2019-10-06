@@ -3,7 +3,7 @@ import articleDb from './articles.db';
 
 class Article {
   createNewArticle(validatedData, authorId) {
-    const { title, article } = validatedData;
+    const { title, article, category } = validatedData;
 
     const newArticle = {
       id: articleDb.length + 1,
@@ -11,6 +11,7 @@ class Article {
       article,
       publishedOn: moment().format('MMM-DD-Y HH:mm'),
       author: authorId,
+      category: (category && category.trim()) || '',
       inappropriateFlag: false,
       inappropriateFlagCount: 0
     };

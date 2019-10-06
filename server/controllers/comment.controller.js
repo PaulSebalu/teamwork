@@ -5,13 +5,6 @@ import exceptionHandler from '../helpers/exception.helper';
 
 class Comment {
   static async createComment(req, res) {
-    if (req.user === undefined) {
-      return res.status(500).json({
-        status: 500,
-        message: `The server was not able to process the request due to an invalid token`
-      });
-    }
-
     const { error } = createCommentValidator(req.body);
 
     if (error) {

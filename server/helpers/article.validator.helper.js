@@ -8,7 +8,8 @@ const articleValidator = article => {
       .required(),
     article: Joi.string()
       .min(3)
-      .required()
+      .required(),
+    category: Joi.string().min(3)
   };
   return Joi.validate(article, schema);
 };

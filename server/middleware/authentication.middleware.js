@@ -13,6 +13,12 @@ const verifyUser = (req, res, next) => {
   try {
     const decodedToken = Token.verifyToken(bearerHeader, 'secretkey');
     req.user = employeeModel.findEmployee(decodedToken.employeeId);
+    if (req.user === undefined) {
+      return res.status(401).json({
+        status: 401,
+        message: `The server was not able to process the request due to an invalid token`
+      });
+    }
     next();
   } catch (error) {
     return res.status(500).json({
