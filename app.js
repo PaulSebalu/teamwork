@@ -1,9 +1,9 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 
-import employeeRouter from './server/routes/employee.route';
-import articleRouter from './server/routes/article.route';
-import commentRouter from './server/routes/comment.route';
+import employeeRouter from './server/v1/routes/employee.route';
+import articleRouter from './server/v1/routes/article.route';
+import commentRouter from './server/v1/routes/comment.route';
 
 const app = express();
 

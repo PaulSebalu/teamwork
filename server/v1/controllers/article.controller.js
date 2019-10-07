@@ -52,7 +52,7 @@ class Article {
   static deleteArticle(req, res) {
     articleModel.deleteArticle(parseInt(req.params.id, 10));
     return res.status(200).json({
-      status: 204,
+      status: 200,
       message: 'Article successfully deleted'
     });
   }

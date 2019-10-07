@@ -4,7 +4,6 @@ import json from 'express';
 import Article from '../controllers/article.controller';
 import verifyUser from '../middleware/authentication.middleware';
 import verifyAuthor from '../middleware/authorization.middleware';
-// import verifyArticle from '../middleware/article.middleware';
 
 const ArticleRouter = express.Router();
 

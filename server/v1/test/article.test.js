@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import app from '../../app';
+import app from '../../../app';
 
 import {
   validSignUp,
@@ -15,7 +15,7 @@ const { expect } = chai;
 chai.use(chaiHttp);
 
 let employeeToken;
-// let userId;
+
 let articleId;
 
 describe('Article creation endpoint', () => {
