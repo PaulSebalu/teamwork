@@ -16,7 +16,13 @@ const signUpValidator = employee => {
     password: Joi.string()
       .regex(/^((?=.*[a-z])(?=.*[A-Z]))(?=.*[0-9])(?=.{8,})/)
       .max(25)
-      .required(),
+      .required()
+      .error(() => ({
+        message:
+          'Your password should be at least 8 characters, ' +
+          'containing one uppercase letter, numeric ' +
+          'character and lowercase letter.'
+      })),
     gender: Joi.string()
       .regex(/[Mm, Ff]{1}$/)
       .min(1)

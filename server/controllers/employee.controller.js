@@ -12,7 +12,7 @@ class Employee {
   static async EmployeeSignUp(req, res) {
     const { error } = signUpValidator(req.body);
     if (error) {
-      return passwordExceptionHandler(res);
+      return passwordExceptionHandler(res, error);
     }
 
     if (employeeModel.getEmployeebyEmail(req.body.email) !== undefined) {
@@ -85,14 +85,14 @@ class Employee {
         message: 'User is successfully logged in',
         data: {
           token,
-          firstName: employee.firstName || '',
-          lastName: employee.lastName || '',
-          email: employee.email || '',
-          gender: employee.gender || '',
-          jobRole: employee.jobRole || '',
-          department: employee.department || '',
-          address: employee.address || '',
-          userType: employee.userType || ''
+          firstName: employee.firstName,
+          lastName: employee.lastName,
+          email: employee.email,
+          gender: employee.gender,
+          jobRole: employee.jobRole,
+          department: employee.department,
+          address: employee.address,
+          userType: employee.userType
         }
       });
   }
