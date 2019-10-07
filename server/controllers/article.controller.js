@@ -29,13 +29,6 @@ class Article {
   }
 
   static updateArticle(req, res) {
-    const article = articleModel.findArticle(parseInt(req.params.id, 10));
-    if (article === undefined) {
-      return res.status(404).json({
-        status: 404,
-        message: `An article with the unique id: ${req.params.id} does not exist`
-      });
-    }
     const { error } = updateArticleValidator(req.body);
 
     if (error) {
@@ -57,12 +50,6 @@ class Article {
   }
 
   static deleteArticle(req, res) {
-    const article = articleModel.findArticle(parseInt(req.params.id, 10));
-    if (article === undefined) {
-      return res.status(404).json({
-        message: `An article with the unique id: ${req.params.id} does not exist`
-      });
-    }
     articleModel.deleteArticle(parseInt(req.params.id, 10));
     return res.status(200).json({
       status: 204,
@@ -108,11 +95,7 @@ class Article {
 
   static getArticle(req, res) {
     const article = articleModel.findArticle(parseInt(req.params.id, 10));
-    if (article === undefined) {
-      return res.status(404).json({
-        message: `An article with the unique id: ${req.params.id} does not exist`
-      });
-    }
+
     const allComments = commentModel.allComments();
 
     const comments = lodash.filter(allComments, ['article', article.id]);
