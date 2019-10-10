@@ -12,7 +12,7 @@ if (process.env.NODE_ENV === 'test') {
   });
 } else {
   pool = new Pool({
-    connectionString: process.env.DB
+    connectionString: process.env.DATABASE_URL
   });
 }
 

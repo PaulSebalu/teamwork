@@ -6,7 +6,7 @@
   "scripts": {
     "test": "NODE_ENV=test npm run droptables && NODE_ENV=test npm run createtables && NODE_ENV=test mocha --require @babel/polyfill --require @babel/register --timeout 10000 ./server/v2/test/ --exit || exit 0",
     "build": "babel app.js --out-dir build",
-    "start": "babel-node app.js",
+    "start": "npm run createtables && babel-node app.js",
     "dev": "nodemon -r esm app.js babel-watch app.js",
     "coverage": "nyc npm run test",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
