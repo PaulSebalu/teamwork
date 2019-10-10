@@ -30,11 +30,11 @@ app.get('/', (req, res) => {
 app.use('*', (req, res) => {
   return res.status(405).json({
     status: 405,
-    message: 'Method not allowed'
+    message: 'Invalid URL'
   });
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 
 app.listen(PORT, () => {
   // eslint-disable-next-line no-console

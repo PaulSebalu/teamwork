@@ -14,7 +14,7 @@ const tokenProvided = (req, res, next) => {
 
 const verifyUser = (req, res, next) => {
   const bearerHeader = req.headers.authorization.split(' ')[1];
-  const decodedToken = Token.verifyToken(bearerHeader, 'secretkey');
+  const decodedToken = Token.verifyToken(bearerHeader, process.env.secretkey);
 
   pool.query(
     'SELECT * FROM employees WHERE id = $1',

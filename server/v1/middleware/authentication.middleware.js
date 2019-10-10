@@ -11,7 +11,7 @@ const verifyUser = (req, res, next) => {
   }
   const bearerHeader = req.headers.authorization.split(' ')[1];
   try {
-    const decodedToken = Token.verifyToken(bearerHeader, 'secretkey');
+    const decodedToken = Token.verifyToken(bearerHeader, process.env.secretkey);
     req.user = employeeModel.findEmployee(decodedToken.employeeId);
     if (req.user === undefined) {
       return res.status(401).json({

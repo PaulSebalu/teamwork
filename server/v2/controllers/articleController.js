@@ -104,8 +104,8 @@ class Article {
             status: 200,
             message: 'Success',
             count: results.rows.length,
-            page: 'N/A',
-            pageCount: 'N/A',
+            page: 'n/a',
+            pageCount: 'n/a',
             data: results.rows
           });
         }
@@ -156,13 +156,13 @@ class Article {
   static findArticlesByCategory(req, res) {
     const { category } = req.query;
     pool.query(
-      'SELECT * FROM articles WHERE category = $1',
+      `SELECT * FROM articles WHERE category = $1`,
       [category],
       (err, results) => {
         if (err) {
           return res.status(400).json({
             status: 400,
-            error: err.detail
+            error: err
           });
         }
         const articles = results.rows;

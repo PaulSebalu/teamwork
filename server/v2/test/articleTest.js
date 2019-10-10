@@ -9,7 +9,7 @@ import {
   updatedArticle,
   newComment,
   validSignIn
-} from './article.mock';
+} from './articleMockData';
 
 const { expect } = chai;
 
