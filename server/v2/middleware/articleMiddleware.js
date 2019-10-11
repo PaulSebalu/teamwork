@@ -13,8 +13,8 @@ const articleExists = (req, res, next) => {
         });
       }
       if (results.rows.length === 0) {
-        return res.status(400).json({
-          status: 400,
+        return res.status(404).json({
+          status: 404,
           message: 'Article does not exist'
         });
       }

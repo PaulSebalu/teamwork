@@ -1,3 +1,4 @@
+import moment from 'moment';
 import pool from '../services/connectDb';
 
 class Article {
@@ -5,21 +6,20 @@ class Article {
   static async CreateArticle(req, res) {
     const { title, article, category } = req.body;
     const query = `INSERT INTO articles
-    (title, article, category, publishedon, author, 
+    (title, article, category, author, 
         flag, flagcount) 
-      VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`;
+      VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`;
     pool.query(
       query,
       [
-        title,
-        article,
+        title.trim(),
+        article.trim(),
         (category && category.trim()) || '',
-        new Date(),
         req.user.id,
         false,
         0
       ],
-      (err, results) => {
+      (err, articles) => {
         if (err) {
           return res.status(400).json({
             status: 400,
@@ -30,10 +30,13 @@ class Article {
           status: 201,
           message: 'Article successfully created',
           data: {
-            createdOn: results.rows[0].publishedon,
-            title: results.rows[0].title,
-            articleId: results.rows[0].id,
-            category: results.rows[0].category
+            // eslint-disable-next-line new-cap
+            createdOn: new moment(articles.rows[0].publishedon).format(
+              'MMM-DD-Y HH:mm'
+            ),
+            title: articles.rows[0].title,
+            articleId: articles.rows[0].id,
+            category: articles.rows[0].category
           }
         });
       }
@@ -47,12 +50,12 @@ class Article {
     pool.query(
       'UPDATE articles SET title = $1, article = $2, category = $3 WHERE id = $4 RETURNING *',
       [
-        title || req.article.title,
-        article || req.article.article,
-        category || req.article.category,
+        (title && title.trim()) || req.article.title,
+        (article && article.trim()) || req.article.article,
+        (category && category.trim()) || req.article.category,
         req.params.id
       ],
-      (err, results) => {
+      (err, articles) => {
         if (err) {
           return res.status(400).json({
             status: 400,
@@ -63,9 +66,9 @@ class Article {
           status: 200,
           message: 'Article successfully edited',
           data: {
-            title: results.rows[0].title,
-            article: results.rows[0].article,
-            category: results.rows[0].category
+            title: articles.rows[0].title,
+            article: articles.rows[0].article,
+            category: articles.rows[0].category
           }
         });
       }
@@ -91,22 +94,22 @@ class Article {
     // eslint-disable-next-line consistent-return
     pool.query(
       'SELECT * FROM articles ORDER BY publishedon DESC',
-      (err, results) => {
+      (err, articles) => {
         if (err) {
           return res.status(400).json({
             status: 400,
             error: err.detail
           });
         }
-        const pageCount = Math.ceil(results.rows.length / 10);
+        const pageCount = Math.ceil(articles.rows.length / 10);
         if (req.query.page === 'all') {
           return res.status(200).json({
             status: 200,
             message: 'Success',
-            count: results.rows.length,
+            count: articles.rows.length,
             page: 'n/a',
             pageCount: 'n/a',
-            data: results.rows
+            data: articles.rows
           });
         }
         let page = parseInt(req.query.page, 10);
@@ -119,10 +122,10 @@ class Article {
         return res.status(200).json({
           status: 200,
           message: 'Success',
-          count: results.rows.slice(page * 10 - 10, page * 10).length,
+          count: articles.rows.slice(page * 10 - 10, page * 10).length,
           page,
           pageCount,
-          data: results.rows.slice(page * 10 - 10, page * 10)
+          data: articles.rows.slice(page * 10 - 10, page * 10)
         });
       }
     );

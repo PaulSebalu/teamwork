@@ -13,6 +13,7 @@ const signUpValidator = (req, res, next) => {
       .max(20)
       .required(),
     email: Joi.string()
+      .regex(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/im)
       .email()
       .required(),
     password: Joi.string()

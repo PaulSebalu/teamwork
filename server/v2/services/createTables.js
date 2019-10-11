@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS articles(
     title VARCHAR(128) NOT NULL,
     article VARCHAR(128) NOT NULL,
     category VARCHAR(128),
-    publishedon DATE,
+    publishedon TIMESTAMP,
     author INT REFERENCES employees (id) ON DELETE CASCADE NOT NULL,
     flag boolean,
     flagcount INT	
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS comments (
     comment VARCHAR(128) NOT NULL,
     article INT REFERENCES articles (id) ON DELETE CASCADE NOT NULL,
     author INT REFERENCES employees (id) ON DELETE CASCADE NOT NULL,
-    createdon DATE	
+    createdon TIMESTAMP	
 )`;
 
 const createTables = async () => {

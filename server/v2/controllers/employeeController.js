@@ -34,7 +34,7 @@ class Employee {
         address || '',
         'user'
       ],
-      (err, results) => {
+      (err, employees) => {
         if (err) {
           return res.status(400).json({
             status: 400,
@@ -42,23 +42,23 @@ class Employee {
           });
         }
         const token = Token.createToken({
-          employeeId: results.rows[0].id,
-          adminAccess: results.rows[0].userType
+          employeeId: employees.rows[0].id,
+          adminAccess: employees.rows[0].userType
         });
         return res.status(201).json({
           status: 201,
           message: 'Successfully signed up',
           data: {
             token,
-            id: results.rows[0].id,
-            firstName: results.rows[0].firstName,
-            lastName: results.rows[0].lastName,
-            email: results.rows[0].email,
-            gender: results.rows[0].gender,
-            jobRole: results.rows[0].jobRole,
-            department: results.rows[0].department,
-            address: results.rows[0].address,
-            userType: results.rows[0].usertype
+            id: employees.rows[0].id,
+            firstName: employees.rows[0].firstName,
+            lastName: employees.rows[0].lastName,
+            email: employees.rows[0].email,
+            gender: employees.rows[0].gender,
+            jobRole: employees.rows[0].jobRole,
+            department: employees.rows[0].department,
+            address: employees.rows[0].address,
+            userType: employees.rows[0].usertype
           }
         });
       }
@@ -72,23 +72,23 @@ class Employee {
     pool.query(
       'SELECT * FROM employees WHERE email = $1',
       [email],
-      (err, results) => {
+      (err, employees) => {
         if (err) {
           return res.status(400).json({
             status: 400,
             error: err.detail
           });
         }
-        if (results.rows.length === 0) {
-          return res.status(400).json({
-            status: 400,
+        if (employees.rows.length === 0) {
+          return res.status(404).json({
+            status: 404,
             message: 'An employee with this email does not exist'
           });
         }
-        if (bcrypt.compareSync(password, results.rows[0].password)) {
+        if (bcrypt.compareSync(password, employees.rows[0].password)) {
           const token = Token.createToken({
-            employeeId: results.rows[0].id,
-            adminAccess: results.rows[0].userType
+            employeeId: employees.rows[0].id,
+            adminAccess: employees.rows[0].userType
           });
           return res
             .header('Authorization', `Bearer ${token}`)
@@ -98,15 +98,15 @@ class Employee {
               message: 'User is successfully logged in',
               data: {
                 token,
-                id: results.rows[0].id,
-                firstName: results.rows[0].firstName,
-                lastName: results.rows[0].lastName,
-                email: results.rows[0].email,
-                gender: results.rows[0].gender,
-                jobRole: results.rows[0].jobRole,
-                department: results.rows[0].department,
-                address: results.rows[0].address,
-                userType: results.rows[0].usertype
+                id: employees.rows[0].id,
+                firstName: employees.rows[0].firstName,
+                lastName: employees.rows[0].lastName,
+                email: employees.rows[0].email,
+                gender: employees.rows[0].gender,
+                jobRole: employees.rows[0].jobRole,
+                department: employees.rows[0].department,
+                address: employees.rows[0].address,
+                userType: employees.rows[0].usertype
               }
             });
         }

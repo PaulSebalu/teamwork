@@ -10,7 +10,7 @@ class Comment {
     pool.query(
       query,
       [comment, req.article.id, req.user.id, new Date()],
-      (err, results) => {
+      (err, comments) => {
         if (err) {
           return res.status(400).json({
             status: 400,
@@ -21,11 +21,11 @@ class Comment {
           status: 201,
           message: 'Comment successfully created',
           data: {
-            createdOn: results.rows[0].createdon,
+            createdOn: comments.rows[0].createdon,
             articleTitle: req.article.title,
             article: req.article.article,
-            comment: results.rows[0].comment,
-            commentAuthor: results.rows[0].author
+            comment: comments.rows[0].comment,
+            commentAuthor: comments.rows[0].author
           }
         });
       }

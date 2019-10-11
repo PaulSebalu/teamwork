@@ -14,29 +14,35 @@ const tokenProvided = (req, res, next) => {
 
 const verifyUser = (req, res, next) => {
   const bearerHeader = req.headers.authorization.split(' ')[1];
-  const decodedToken = Token.verifyToken(bearerHeader, process.env.secretkey);
-
-  pool.query(
-    'SELECT * FROM employees WHERE id = $1',
-    [decodedToken.employeeId],
-    (err, results) => {
-      if (err) {
-        return res.status(400).json({
-          status: 400,
-          error: err.detail
-        });
+  try {
+    const decodedToken = Token.verifyToken(bearerHeader, process.env.secretkey);
+    pool.query(
+      'SELECT * FROM employees WHERE id = $1',
+      [decodedToken.employeeId],
+      (err, results) => {
+        if (err) {
+          return res.status(400).json({
+            status: 400,
+            error: err.detail
+          });
+        }
+        if (results.rows.length === 0) {
+          return res.status(404).json({
+            status: 404,
+            message: 'Token does not match any record'
+          });
+        }
+        // eslint-disable-next-line prefer-destructuring
+        req.user = results.rows[0];
+        next();
       }
-      if (results.rows.length === 0) {
-        return res.status(400).json({
-          status: 400,
-          message: 'Invalid token'
-        });
-      }
-      // eslint-disable-next-line prefer-destructuring
-      req.user = results.rows[0];
-      next();
-    }
-  );
+    );
+  } catch (err) {
+    return res.status(400).json({
+      status: 400,
+      message: err.message
+    });
+  }
 };
 
 export { tokenProvided, verifyUser };
