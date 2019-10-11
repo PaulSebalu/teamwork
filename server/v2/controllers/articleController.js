@@ -6,9 +6,9 @@ class Article {
   static async CreateArticle(req, res) {
     const { title, article, category } = req.body;
     const query = `INSERT INTO articles
-    (title, article, category, author, 
+    (title, article, category, publishedon, author, 
         flag, flagcount) 
-      VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`;
+      VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`;
     pool.query(
       query,
       [
@@ -16,6 +16,7 @@ class Article {
         article.trim(),
         (category && category.trim()) || '',
         req.user.id,
+        new Date(),
         false,
         0
       ],

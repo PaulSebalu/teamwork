@@ -8,7 +8,7 @@ const EmployeeRouter = express.Router();
 
 EmployeeRouter.use(json());
 
-EmployeeRouter.post('/api/v2/signup', signUpValidator, Employee.EmployeeSignUp);
-EmployeeRouter.post('/api/v2/signin', logInValidator, Employee.EmployeeSignIn);
+EmployeeRouter.post('/auth/signup', signUpValidator, Employee.EmployeeSignUp);
+EmployeeRouter.post('/auth/signin', logInValidator, Employee.EmployeeSignIn);
 
 export default EmployeeRouter;

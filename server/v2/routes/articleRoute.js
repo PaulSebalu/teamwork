@@ -17,7 +17,7 @@ const ArticleRouter = express.Router();
 ArticleRouter.use(json());
 
 ArticleRouter.post(
-  '/api/v2/article/create',
+  '/articles',
   tokenProvided,
   verifyUser,
   createArticleValidator,
@@ -25,7 +25,7 @@ ArticleRouter.post(
 );
 
 ArticleRouter.patch(
-  '/api/v2/article/update/:id',
+  '/articles/:id',
   tokenProvided,
   verifyUser,
   articleExists,
@@ -35,7 +35,7 @@ ArticleRouter.patch(
 );
 
 ArticleRouter.delete(
-  '/api/v2/article/delete/:id',
+  '/articles/:id',
   tokenProvided,
   verifyUser,
   articleExists,
@@ -43,15 +43,10 @@ ArticleRouter.delete(
   Article.deleteArticle
 );
 
-ArticleRouter.get(
-  '/api/v2/feeds',
-  tokenProvided,
-  verifyUser,
-  Article.allArticles
-);
+ArticleRouter.get('/feeds', tokenProvided, verifyUser, Article.allArticles);
 
 ArticleRouter.get(
-  '/api/v2/article/:id',
+  '/articles/:id',
   tokenProvided,
   verifyUser,
   articleExists,
@@ -59,14 +54,14 @@ ArticleRouter.get(
 );
 
 ArticleRouter.get(
-  '/api/v2/search',
+  '/articles/category',
   tokenProvided,
   verifyUser,
   Article.findArticlesByCategory
 );
 
 ArticleRouter.post(
-  '/api/v2/article/:id/comments',
+  '/articles/:id/comments',
   tokenProvided,
   verifyUser,
   articleExists,

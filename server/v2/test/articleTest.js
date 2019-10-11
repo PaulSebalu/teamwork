@@ -23,7 +23,7 @@ describe('Article creation endpoint', () => {
   before('Create user', done => {
     chai
       .request(app)
-      .post('/api/v2/signup')
+      .post('/auth/signup')
       .send(validSignUp)
       .end((error, res) => {
         employeeToken = res.body.data.token;
@@ -37,7 +37,7 @@ describe('Article creation endpoint', () => {
     done => {
       chai
         .request(app)
-        .post('/api/v2/article/create')
+        .post('/articles')
         .set('Authorization', `Bearer ${employeeToken}`)
         .send(newArticle)
         .then(res => {
@@ -55,7 +55,7 @@ describe('Article creation endpoint', () => {
     done => {
       chai
         .request(app)
-        .post('/api/v2/article/create')
+        .post('/articles')
         .send(newArticle)
         .then(res => {
           expect(res).to.have.status(403);
@@ -75,7 +75,7 @@ describe('Article update endpoint', () => {
     done => {
       chai
         .request(app)
-        .patch(`/api/v2/article/update/${articleId}`)
+        .patch(`/articles/${articleId}`)
         .set('Authorization', `Bearer ${employeeToken}`)
         .send(updatedArticle)
         .then(res => {
@@ -93,7 +93,7 @@ describe('Article update endpoint', () => {
     done => {
       chai
         .request(app)
-        .patch(`/api/v2/article/update/${articleId}`)
+        .patch(`/articles/${articleId}`)
         .send(updatedArticle)
         .then(res => {
           expect(res).to.have.status(403);
@@ -110,7 +110,7 @@ describe('Single article api endpoint', () => {
   it('Endpoint should return a 200 {Okay} HTTP status code', done => {
     chai
       .request(app)
-      .get(`/api/v2/article/${articleId}`)
+      .get(`/articles/${articleId}`)
       .set('Authorization', `Bearer ${employeeToken}`)
       .then(res => {
         expect(res).to.have.status(200);
@@ -125,7 +125,7 @@ describe('Comment api endpoint', () => {
   it('Endpoint should return a 201 {Created} HTTP status code and confirmation for valid input', done => {
     chai
       .request(app)
-      .post(`/api/v2/article/${articleId}/comments`)
+      .post(`/articles/${articleId}/comments`)
       .set('Authorization', `Bearer ${employeeToken}`)
       .send(newComment)
       .then(res => {
@@ -141,7 +141,7 @@ describe('Article deletion endpoint', () => {
   before('Sign in Employee', done => {
     chai
       .request(app)
-      .post('/api/v2/signin')
+      .post('/auth/signin')
       .send(validSignIn)
       .end((error, res) => {
         employeeToken = res.body.data.token;
@@ -155,7 +155,7 @@ describe('Article deletion endpoint', () => {
     done => {
       chai
         .request(app)
-        .delete(`/api/v2/article/delete/${articleId}`)
+        .delete(`/articles/${articleId}`)
         .set('Authorization', `Bearer ${employeeToken}`)
         .then(res => {
           expect(res).to.have.status(200);
@@ -173,7 +173,7 @@ describe('Feeds api endpoint', () => {
     done => {
       chai
         .request(app)
-        .get('/api/v2/feeds')
+        .get('/feeds')
         .set('Authorization', `Bearer ${employeeToken}`)
         .then(res => {
           expect(res).to.have.status(200);

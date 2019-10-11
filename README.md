@@ -48,11 +48,13 @@ The following endpoints have been implemented:
 
 | METHOD       | Endpoint           | Description  | Request header(s)
 | ------------- |:-------------:| -----| -------|
-| POST      | /api/v1/signup | Register an account | Content-Type: application/json
-| POST      | /api/v1/signin     | Sign in | Content-Type: application/json
-| POST | /api/v1/article/create | Create a new article | Content-Type: application/json, Authorization: Bearer```space```token
-| PATCH      | /api/v1/article/update/:id     | Modify a specific article | Content-Type: application/json, Authorization: Bearer```space```token
-| DELETE      | /api/v1/article/delete/:id     | Delete a specific article | Content-Type: application/json, Authorization: Bearer```space```token
-| GET      | /api/v1/article/:id     | Get a specific article | Content-Type: application/json, Authorization: Bearer```space```token
-| GET      | /api/v1/feeds     | Get all articles | Content-Type: application/json, Authorization: Bearer```space```token
-| POST      | /api/v1/article/:id/comments     | Comment on a specific article | Content-Type: application/json, Authorization: Bearer```space```token
+| POST      | /auth/signup | Register an account | Content-Type: application/json
+| POST      | /auth/signin     | Sign in | Content-Type: application/json
+| POST | /articles | Create a new article | Content-Type: application/json, Authorization: Bearer```space```token
+| PATCH      | /articles/:id     | Modify a specific article | Content-Type: application/json, Authorization: Bearer```space```token
+| DELETE      | /articles:id     | Delete a specific article | Content-Type: application/json, Authorization: Bearer```space```token
+| GET      | /articles/:id     | Get a specific article | Content-Type: application/json, Authorization: Bearer```space```token
+| GET      | /feeds?page=<>     | Get all articles | Content-Type: application/json, Authorization: Bearer```space```token
+| POST      | /articles/:id/comments     | Comment on a specific article | Content-Type: application/json, Authorization: Bearer```space```token
+| GET      | /articles/category?category=<>     | Get articles in a specific category | Content-Type: application/json, Authorization: Bearer```space```token
+
