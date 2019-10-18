@@ -1,184 +1,148 @@
-import moment from 'moment';
-import pool from '../services/connectDb';
+import Moment from 'moment';
+import teamworkModel from '../models/teamworkModel';
 
 class Article {
   // eslint-disable-next-line consistent-return
   static async CreateArticle(req, res) {
     const { title, article, category } = req.body;
-    const query = `INSERT INTO articles
+
+    const sql = `INSERT INTO articles
     (title, article, category, publishedon, author, 
         flag, flagcount) 
       VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`;
-    pool.query(
-      query,
+
+    const { rows } = await teamworkModel.query(
+      sql,
       [
         title.trim(),
         article.trim(),
         (category && category.trim()) || '',
-        req.user.id,
         new Date(),
+        req.user.id,
         false,
         0
       ],
-      (err, articles) => {
-        if (err) {
-          return res.status(400).json({
-            status: 400,
-            error: err.detail
-          });
-        }
-        return res.status(201).json({
-          status: 201,
-          message: 'Article successfully created',
-          data: {
-            // eslint-disable-next-line new-cap
-            createdOn: new moment(articles.rows[0].publishedon).format(
-              'MMM-DD-Y HH:mm'
-            ),
-            title: articles.rows[0].title,
-            articleId: articles.rows[0].id,
-            category: articles.rows[0].category
-          }
-        });
-      }
+      res
     );
+    if (rows) {
+      return res.status(201).json({
+        status: 201,
+        message: 'Article successfully created',
+        data: {
+          createdOn: new Moment(rows[0].publishedon).format('MMM-DD-Y HH:mm'),
+          title: rows[0].title,
+          articleId: rows[0].id,
+          category: rows[0].category
+        }
+      });
+    }
   }
 
   // eslint-disable-next-line consistent-return
-  static updateArticle(req, res) {
+  static async updateArticle(req, res) {
     const { title, article, category } = req.body;
 
-    pool.query(
-      'UPDATE articles SET title = $1, article = $2, category = $3 WHERE id = $4 RETURNING *',
+    const sql = `UPDATE articles SET title = $1, 
+    article = $2, category = $3 WHERE id = $4 RETURNING *`;
+
+    const { rows } = await teamworkModel.query(
+      sql,
       [
         (title && title.trim()) || req.article.title,
         (article && article.trim()) || req.article.article,
         (category && category.trim()) || req.article.category,
         req.params.id
       ],
-      (err, articles) => {
-        if (err) {
-          return res.status(400).json({
-            status: 400,
-            error: err.detail
-          });
-        }
-        return res.status(200).json({
-          status: 200,
-          message: 'Article successfully edited',
-          data: {
-            title: articles.rows[0].title,
-            article: articles.rows[0].article,
-            category: articles.rows[0].category
-          }
-        });
-      }
+      res
     );
-  }
-
-  static deleteArticle(req, res) {
-    pool.query('DELETE FROM articles WHERE id = $1', [req.params.id], err => {
-      if (err) {
-        return res.status(400).json({
-          status: 400,
-          error: err.detail
-        });
-      }
+    if (rows) {
       return res.status(200).json({
         status: 200,
-        message: 'Article successfully deleted'
+        message: 'Article successfully edited',
+        data: {
+          title: rows[0].title,
+          article: rows[0].article,
+          category: rows[0].category
+        }
       });
+    }
+  }
+
+  static async deleteArticle(req, res) {
+    const sql = `DELETE FROM articles WHERE id = $1`;
+    await teamworkModel.query(sql, [req.params.id], res);
+
+    return res.status(200).json({
+      status: 200,
+      message: 'Article successfully deleted'
     });
   }
 
-  static allArticles(req, res) {
+  static async allArticles(req, res) {
     // eslint-disable-next-line consistent-return
-    pool.query(
-      'SELECT * FROM articles ORDER BY publishedon DESC',
-      (err, articles) => {
-        if (err) {
-          return res.status(400).json({
-            status: 400,
-            error: err.detail
-          });
-        }
-        const pageCount = Math.ceil(articles.rows.length / 10);
-        if (req.query.page === 'all') {
-          return res.status(200).json({
-            status: 200,
-            message: 'Success',
-            count: articles.rows.length,
-            page: 'n/a',
-            pageCount: 'n/a',
-            data: articles.rows
-          });
-        }
-        let page = parseInt(req.query.page, 10);
-        if (!page) {
-          page = 1;
-        }
-        if (page > pageCount) {
-          page = pageCount;
-        }
-        return res.status(200).json({
-          status: 200,
-          message: 'Success',
-          count: articles.rows.slice(page * 10 - 10, page * 10).length,
-          page,
-          pageCount,
-          data: articles.rows.slice(page * 10 - 10, page * 10)
-        });
-      }
-    );
+    const sql = `SELECT * FROM articles ORDER BY publishedon DESC`;
+    const { rows } = await teamworkModel.query(sql, [], res);
+
+    const pageCount = Math.ceil(rows.length / 10);
+
+    // eslint-disable-next-line prefer-const
+    let currentPage = parseInt(req.query.page, 10);
+
+    currentPage = (currentPage > pageCount
+    ? pageCount
+    : currentPage < 0)
+      ? 1
+      : currentPage;
+
+    return res.status(200).json({
+      status: 200,
+      message: 'Success',
+      count: rows.slice(currentPage * 10 - 10, currentPage * 10).length,
+      currentPage,
+      pageCount,
+      data: rows.slice(currentPage * 10 - 10, currentPage * 10)
+    });
   }
 
-  static getArticle(req, res) {
-    pool.query(
-      'SELECT * FROM articles where id = $1',
-      [req.params.id],
-      (err, articles) => {
-        if (err) {
-          return res.status(400).json({
-            status: 400,
-            error: err.detail
-          });
-        }
-        return res.status(200).json({
-          status: 200,
-          data: {
-            id: articles.rows[0].id,
-            createdOn: articles.rows[0].publishedOn,
-            title: articles.rows[0].title,
-            article: articles.rows[0].article,
-            authorId: articles.rows[0].author
-          }
-        });
+  static async getArticle(req, res) {
+    let queryset;
+    let sql;
+
+    sql = `SELECT * FROM articles where id = $1`;
+    queryset = await teamworkModel.query(sql, [req.params.id], res);
+    const article = queryset.rows[0];
+
+    sql = `SELECT * FROM comments where author = $1`;
+    queryset = await teamworkModel.query(sql, [req.user.id], res);
+
+    const comments = queryset.rows;
+
+    return res.status(200).json({
+      status: 200,
+      data: {
+        id: article.id,
+        createdOn: new Moment(article.publishedOn).format('MMM-DD-Y HH:mm'),
+        title: article.title,
+        article: article.article,
+        authorId: article.author,
+        comments
       }
-    );
+    });
   }
 
-  static findArticlesByCategory(req, res) {
+  static async findArticlesByCategory(req, res) {
     const { category } = req.query;
-    pool.query(
-      `SELECT * FROM articles WHERE category = $1`,
-      [category],
-      (err, results) => {
-        if (err) {
-          return res.status(400).json({
-            status: 400,
-            error: err
-          });
-        }
-        const articles = results.rows;
-        return res.status(200).json({
-          status: 200,
-          message: 'Success',
-          data: {
-            articles
-          }
-        });
+
+    const sql = `SELECT * FROM articles WHERE category = $1`;
+    const { rows } = await teamworkModel.query(sql, [category], res);
+
+    return res.status(200).json({
+      status: 200,
+      message: 'Success',
+      data: {
+        rows
       }
-    );
+    });
   }
 }
 

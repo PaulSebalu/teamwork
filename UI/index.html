@@ -16,9 +16,9 @@
       <div class="main">
         <p class="sign" align="center">Log In</p>
         <form class="form1">
-        <input class="username-field" type="text" align="center" placeholder="Email">
-        <input class="password-field" type="password" align="center" placeholder="Password">
-        <a href="html/articles.html" class="submit" align="center">Log In</a>
+        <input class="username-field" name="email" type="text" align="center" placeholder="Email">
+        <input class="password-field" name="password" type="password" align="center" placeholder="Password">
+        <a class="submit" align="center" onclick="signIn()">Log In</a>
         <p class="alternative" align="center"><a href="html/signup.html">Sign Up</p>
         </form>
       </div>
@@ -26,5 +26,6 @@
     <div class="footer">
       <p>&trade;Teamwork</p>
     </div>
+    <script src="./js/login.js"></script>
   </body>
 </html>

@@ -8,6 +8,10 @@ const CommentRouter = express.Router();
 
 CommentRouter.use(json());
 
-CommentRouter.post('/articles/:id/comments', verifyUser, Comment.createComment);
+CommentRouter.post(
+  '/api/v1/article/:id/comments',
+  verifyUser,
+  Comment.createComment
+);
 
 export default CommentRouter;

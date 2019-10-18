@@ -178,7 +178,7 @@ describe('Feeds api endpoint', () => {
         .then(res => {
           expect(res).to.have.status(200);
           expect(res.body).to.have.property('data');
-          expect(res.body).to.have.property('page');
+          expect(res.body).to.have.property('currentPage');
           expect(res.body.data).to.be.a('array');
           done();
         });

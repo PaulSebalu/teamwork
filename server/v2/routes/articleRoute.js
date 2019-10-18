@@ -5,7 +5,10 @@ import Article from '../controllers/articleController';
 import Comment from '../controllers/commentController';
 import { tokenProvided, verifyUser } from '../middleware/authentication';
 import articleExists from '../middleware/articleMiddleware';
-import verifyAuthor from '../middleware/authorization';
+import {
+  authorizeArticleEdit,
+  authorizeArticleDeletion
+} from '../middleware/authorization';
 import {
   createArticleValidator,
   updateArticleValidator,
@@ -29,7 +32,7 @@ ArticleRouter.patch(
   tokenProvided,
   verifyUser,
   articleExists,
-  verifyAuthor,
+  authorizeArticleEdit,
   updateArticleValidator,
   Article.updateArticle
 );
@@ -39,11 +42,11 @@ ArticleRouter.delete(
   tokenProvided,
   verifyUser,
   articleExists,
-  verifyAuthor,
+  authorizeArticleDeletion,
   Article.deleteArticle
 );
 
-ArticleRouter.get('/feeds', tokenProvided, verifyUser, Article.allArticles);
+ArticleRouter.get('/feeds', Article.allArticles);
 
 ArticleRouter.get(
   '/articles/:id',

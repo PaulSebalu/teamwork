@@ -38,23 +38,36 @@ Teamwork requires Node.js 10.0+. Checkout the [docs](https://nodejs.org/en/) to 
 - Clone the [repository](https://github.com/sebalu/teamwork.git) using ```git clone https://github.com/sebalu/teamwork.git```
 - On your command line, switch to the app root directory
 - Install dependencies using `npm install`
+- create an  ```.env``` file and specify the ```DATABASE_URL```, ```DB_TEST``` and ```secretkey```.
+- DB URL format: ```'postgres://postgres:mynameis@localhost:5432/tw-test'```.
+- Parameters in the URL to the DB are the DB type, user, password, DB server URL instance and the DB name.
 - Run tests using `npm run test`
-- Start the development server `npm run dev`
+- Start the development server using `npm run dev`
 - Use [postman](https://www.getpostman.com/downloads/) to test the endpoints listed below
 
 ## API endpoints
 
 The following endpoints have been implemented:
 
-| METHOD       | Endpoint           | Description  | Request header(s)
-| ------------- |:-------------:| -----| -------|
-| POST      | /auth/signup | Register an account | Content-Type: application/json
-| POST      | /auth/signin     | Sign in | Content-Type: application/json
-| POST | /articles | Create a new article | Content-Type: application/json, Authorization: Bearer```space```token
-| PATCH      | /articles/:id     | Modify a specific article | Content-Type: application/json, Authorization: Bearer```space```token
-| DELETE      | /articles:id     | Delete a specific article | Content-Type: application/json, Authorization: Bearer```space```token
-| GET      | /articles/:id     | Get a specific article | Content-Type: application/json, Authorization: Bearer```space```token
-| GET      | /feeds?page=<>     | Get all articles | Content-Type: application/json, Authorization: Bearer```space```token
-| POST      | /articles/:id/comments     | Comment on a specific article | Content-Type: application/json, Authorization: Bearer```space```token
-| GET      | /articles/category?category=<>     | Get articles in a specific category | Content-Type: application/json, Authorization: Bearer```space```token
+<strong>Request header:</strong>
+- ``` Content-Type: application/json```
+
+| METHOD       | Endpoint           | Description
+| ------------- |:-------------:| -----|
+| POST      | /auth/signup | Register an account
+| POST      | /auth/signin     | Sign in 
+
+<strong>Request headers:</strong>
+- ``` Content-Type: application/json```
+- ```Authorization: Bearer<space>token```
+
+| METHOD       | Endpoint           | Description
+| ------------- |:-------------:| -----
+| POST | /articles | Create a new article
+| PATCH      | /articles/:id     | Modify a specific article
+| DELETE      | /articles:id     | Delete a specific article
+| GET      | /articles/:id     | Get a specific article
+| GET      | /feeds?page=<>     | Get paginated articles
+| POST      | /articles/:id/comments     | Comment on a specific article
+| GET      | /articles/category?category=<>     | Get articles in a specific category
 
