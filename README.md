@@ -40,7 +40,7 @@ Teamwork requires Node.js 10.0+. Checkout the [docs](https://nodejs.org/en/) to 
 - Install dependencies using `npm install`
 - create an  ```.env``` file and specify the ```DATABASE_URL```, ```DB_TEST``` and ```secretkey```.
 - DB URL format: ```'postgres://postgres:mynameis@localhost:5432/tw-test'```.
-- Parameters in the URL to the DB are the DB type, user, password, DB server URL instance and the DB name.
+- Parameters in the DB URL are the DB type, user, password, DB server URL instance and the DB name.
 - Run tests using `npm run test`
 - Start the development server using `npm run dev`
 - Use [postman](https://www.getpostman.com/downloads/) to test the endpoints listed below
