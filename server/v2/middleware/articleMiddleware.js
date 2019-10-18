@@ -1,28 +1,19 @@
-import pool from '../services/connectDb';
+import teamworkModel from '../models/teamworkModel';
 
-const articleExists = (req, res, next) => {
-  pool.query(
-    'SELECT * FROM articles where id = $1',
-    [req.params.id],
-    // eslint-disable-next-line consistent-return
-    (err, results) => {
-      if (err) {
-        return res.status(400).json({
-          status: 400,
-          error: err.detail
-        });
-      }
-      if (results.rows.length === 0) {
-        return res.status(404).json({
-          status: 404,
-          message: 'Article does not exist'
-        });
-      }
-      // eslint-disable-next-line prefer-destructuring
-      req.article = results.rows[0];
-      next();
-    }
-  );
+// eslint-disable-next-line consistent-return
+const articleExists = async (req, res, next) => {
+  const sql = `SELECT * FROM articles where id = $1`;
+  const { rows } = await teamworkModel.query(sql, [req.params.id], res);
+
+  if (rows.length === 0) {
+    return res.status(404).json({
+      status: 404,
+      message: 'Article does not exist'
+    });
+  }
+  // eslint-disable-next-line prefer-destructuring
+  req.article = rows[0];
+  next();
 };
 
 export default articleExists;

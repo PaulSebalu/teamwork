@@ -16,11 +16,11 @@
       <div class="main">
         <p class="sign" align="center">Create account</p>
         <form class="form1">
-        <input class="field" type="text" align="center" placeholder="First name">
-        <input class="field" type="text" align="center" placeholder="Last name ">
-        <input class="field" type="text" align="center" placeholder="Email">
-        <input class="field" type="password" align="center" placeholder="Password">
-        <a href="articles.html" class="submit" align="center">Sign up</a>
+        <input class="field" name="firstName" type="text" align="center" placeholder="First name">
+        <input class="field" name="lastName" type="text" align="center" placeholder="Last name ">
+        <input class="field" name="email" type="text" align="center" placeholder="Email">
+        <input class="field" name="password" type="password" align="center" placeholder="Password">
+        <a class="submit" align="center" onclick="signUp()">Sign up</a>
         <p class="alternative" align="center"><a href="../index.html">Log In</p>
         </form>
       </div>
@@ -28,5 +28,6 @@
     <div class="footer">
       <p>&trade;Teamwork</p>
     </div>
+    <script src="../js/signup.js"></script>
   </body>
 </html>

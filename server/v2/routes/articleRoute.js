@@ -5,7 +5,10 @@ import Article from '../controllers/articleController';
 import Comment from '../controllers/commentController';
 import { tokenProvided, verifyUser } from '../middleware/authentication';
 import articleExists from '../middleware/articleMiddleware';
-import verifyAuthor from '../middleware/authorization';
+import {
+  authorizeArticleEdit,
+  authorizeArticleDeletion
+} from '../middleware/authorization';
 import {
   createArticleValidator,
   updateArticleValidator,
@@ -17,7 +20,7 @@ const ArticleRouter = express.Router();
 ArticleRouter.use(json());
 
 ArticleRouter.post(
-  '/api/v2/article/create',
+  '/articles',
   tokenProvided,
   verifyUser,
   createArticleValidator,
@@ -25,33 +28,28 @@ ArticleRouter.post(
 );
 
 ArticleRouter.patch(
-  '/api/v2/article/update/:id',
+  '/articles/:id',
   tokenProvided,
   verifyUser,
   articleExists,
-  verifyAuthor,
+  authorizeArticleEdit,
   updateArticleValidator,
   Article.updateArticle
 );
 
 ArticleRouter.delete(
-  '/api/v2/article/delete/:id',
+  '/articles/:id',
   tokenProvided,
   verifyUser,
   articleExists,
-  verifyAuthor,
+  authorizeArticleDeletion,
   Article.deleteArticle
 );
 
-ArticleRouter.get(
-  '/api/v2/feeds',
-  tokenProvided,
-  verifyUser,
-  Article.allArticles
-);
+ArticleRouter.get('/feeds', Article.allArticles);
 
 ArticleRouter.get(
-  '/api/v2/article/:id',
+  '/articles/:id',
   tokenProvided,
   verifyUser,
   articleExists,
@@ -59,14 +57,14 @@ ArticleRouter.get(
 );
 
 ArticleRouter.get(
-  '/api/v2/search',
+  '/articles/category',
   tokenProvided,
   verifyUser,
   Article.findArticlesByCategory
 );
 
 ArticleRouter.post(
-  '/api/v2/article/:id/comments',
+  '/articles/:id/comments',
   tokenProvided,
   verifyUser,
   articleExists,

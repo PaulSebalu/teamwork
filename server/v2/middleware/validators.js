@@ -1,6 +1,6 @@
 /* eslint-disable consistent-return */
 import Joi from 'joi';
-import exceptionHandler from '../helpers/exceptions';
+import exceptionHandler from './exceptions';
 
 const signUpValidator = (req, res, next) => {
   const schema = {
@@ -41,11 +41,7 @@ const signUpValidator = (req, res, next) => {
       .max(35)
   };
 
-  const { error } = Joi.validate(req.body, schema);
-  if (error) {
-    return exceptionHandler(res, error);
-  }
-  next();
+  return exceptionHandler(Joi.validate(req.body, schema), res, next);
 };
 
 const logInValidator = (req, res, next) => {
@@ -59,11 +55,7 @@ const logInValidator = (req, res, next) => {
       .required()
   };
 
-  const { error } = Joi.validate(req.body, schema);
-  if (error) {
-    return exceptionHandler(res, error);
-  }
-  next();
+  return exceptionHandler(Joi.validate(req.body, schema), res, next);
 };
 
 const createArticleValidator = (req, res, next) => {
@@ -77,11 +69,7 @@ const createArticleValidator = (req, res, next) => {
       .required(),
     category: Joi.string().min(3)
   };
-  const { error } = Joi.validate(req.body, schema);
-  if (error) {
-    return exceptionHandler(res, error);
-  }
-  next();
+  return exceptionHandler(Joi.validate(req.body, schema), res, next);
 };
 
 const updateArticleValidator = (req, res, next) => {
@@ -92,11 +80,7 @@ const updateArticleValidator = (req, res, next) => {
     article: Joi.string().min(3),
     category: Joi.string().min(3)
   };
-  const { error } = Joi.validate(req.body, schema);
-  if (error) {
-    return exceptionHandler(res, error);
-  }
-  next();
+  return exceptionHandler(Joi.validate(req.body, schema), res, next);
 };
 
 const commentValidator = (req, res, next) => {
@@ -105,11 +89,7 @@ const commentValidator = (req, res, next) => {
       .min(3)
       .required()
   };
-  const { error } = Joi.validate(req.body, schema);
-  if (error) {
-    return exceptionHandler(res, error);
-  }
-  next();
+  return exceptionHandler(Joi.validate(req.body, schema), res, next);
 };
 
 export {
