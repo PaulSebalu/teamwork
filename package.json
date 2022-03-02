@@ -1,11 +1,11 @@
 {
   "name": "teamwork",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Teamwork is an internal social network for organizations’ employees. The goal of this application is to facilitate more interaction between colleagues and facilitate team bonding.",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test npm run droptables && NODE_ENV=test npm run createtables && NODE_ENV=test mocha --require @babel/polyfill --require @babel/register --timeout 10000 ./server/v2/test/ --exit || exit 0",
-    "build": "babel app.js --out-dir build",
+    "build": "babel index.js --out-dir build",
     "start": "npm run createtables && babel-node app.js",
     "dev": "NODE_ENV=dev nodemon -r esm app.js babel-watch app.js",
     "coverage": "nyc npm run test",
@@ -15,15 +15,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sebalu/teamwork.git"
+    "url": "git+https://github.com/PaulSebalu/teamwork.git"
   },
   "keywords": [],
   "author": "Paul Sebalu",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/sebalu/teamwork/issues"
+    "url": "https://github.com/PaulSebalu/teamwork/issues"
   },
-  "homepage": "https://github.com/sebalu/teamwork#readme",
+  "homepage": "https://github.com/PaulSebalu/teamwork#readme",
   "devDependencies": {
     "coveralls": "^3.0.6",
     "eslint": "^6.4.0",
@@ -72,6 +72,7 @@
     "mocha-lcov-reporter": "^1.3.0",
     "moment": "^2.24.0",
     "nodemon": "^1.19.2",
-    "pg": "^7.12.1"
+    "pg": "^7.12.1",
+    "prisma": "^3.10.0"
   }
 }
