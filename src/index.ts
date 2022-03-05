@@ -19,7 +19,7 @@ app.use('*', (req, res) => {
   });
 });
 
-let PORT;
+let PORT: number | string;
 
 if (process.env.NODE_ENV === 'test') {
   PORT = 3000;
