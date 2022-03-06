@@ -46,11 +46,7 @@ ArticleRouter.delete(
   Article.deleteArticle
 );
 
-ArticleRouter.get('/feeds',
-  tokenProvided,
-  verifyUser,
-  Article.allArticles
-);
+ArticleRouter.get('/feeds', tokenProvided, verifyUser, Article.allArticles);
 
 ArticleRouter.get(
   '/articles/:id',
