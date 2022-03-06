@@ -17,7 +17,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn prettier && yarn lint"
+      "pre-commit": "npm run prettier && npm run lint"
     }
   },
   "repository": {
@@ -67,8 +67,8 @@
     "@babel/polyfill": "^7.12.1",
     "@babel/register": "^7.14.5",
     "@babel/runtime": "^7.14.0",
-    "bcrypt": "^3.0.6",
-    "dotenv": "^8.1.0",
+    "bcrypt": "^5.0.1",
+    "dotenv": "^16.0.0",
     "express": "^4.17.1",
     "luxon": "^2.3.1",
     "pg": "^7.12.1",
