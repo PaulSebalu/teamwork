@@ -1,9 +1,12 @@
-import env from 'dotenv';
-import express from 'express';
+import express, {json} from 'express';
+import { envConfig } from './core/utils';
 
-env.config();
+import AuthRoute from './account/route';
+
+envConfig();
 
 const app = express();
+app.use(json())
 
 app.get('/', (req, res) => {
   res.send({
@@ -11,6 +14,10 @@ app.get('/', (req, res) => {
     message: 'Teamwork REST API'
   });
 });
+
+// app routes
+
+app.use(AuthRoute);
 
 app.use('*', (req, res) => {
   return res.status(405).json({
